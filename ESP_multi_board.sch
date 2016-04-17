@@ -624,9 +624,7 @@ Wire Wire Line
 Wire Wire Line
 	4050 6200 6350 6200
 Wire Wire Line
-	6350 6200 6350 5850
-Wire Wire Line
-	6350 5850 6200 5850
+	6350 6200 6350 5250
 Wire Wire Line
 	3850 5450 4000 5450
 Wire Wire Line
@@ -634,21 +632,15 @@ Wire Wire Line
 Wire Wire Line
 	4000 6250 6400 6250
 Wire Wire Line
-	6400 6250 6400 5650
-Wire Wire Line
-	6400 5650 6200 5650
+	6400 6250 6400 5450
 Wire Wire Line
 	3950 5550 3950 6300
 Wire Wire Line
 	3950 6300 6450 6300
 Wire Wire Line
-	6450 6300 6450 5450
+	6450 6300 6450 5650
 Wire Wire Line
-	6450 5450 6200 5450
-Wire Wire Line
-	6200 5250 6500 5250
-Wire Wire Line
-	6500 5250 6500 6350
+	6500 5850 6500 6350
 Wire Wire Line
 	6500 6350 3900 6350
 Wire Wire Line
@@ -794,9 +786,9 @@ $EndComp
 Text GLabel 1400 4350 0    60   BiDi ~ 0
 VDD
 Wire Wire Line
-	1400 4950 1250 4950
+	1250 4950 1400 4950
 Wire Wire Line
-	1250 4950 1250 4650
+	1250 4650 1250 4950
 Wire Wire Line
 	1250 4650 1400 4650
 Wire Wire Line
@@ -805,4 +797,12 @@ Connection ~ 1250 4750
 Wire Wire Line
 	1400 4850 1250 4850
 Connection ~ 1250 4850
+Wire Wire Line
+	6350 5250 6200 5250
+Wire Wire Line
+	6400 5450 6200 5450
+Wire Wire Line
+	6450 5650 6200 5650
+Wire Wire Line
+	6500 5850 6200 5850
 $EndSCHEMATC
