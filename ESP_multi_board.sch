@@ -333,8 +333,6 @@ F 3 "" H 1350 5950 50  0000 C CNN
 	1    1350 5950
 	-1   0    0    1   
 $EndComp
-Text GLabel 6200 2450 2    60   BiDi ~ 0
-ENC1_A
 Text GLabel 4400 2250 0    60   BiDi ~ 0
 M1_A
 Text GLabel 4400 2350 0    60   BiDi ~ 0
@@ -466,7 +464,7 @@ Wire Wire Line
 Wire Wire Line
 	9850 1450 9150 1450
 Wire Wire Line
-	7750 2050 7300 2050
+	7600 2050 7600 3100
 Wire Wire Line
 	1200 2350 1500 2350
 $Comp
@@ -786,8 +784,6 @@ F 3 "" H 1350 5950 50  0000 C CNN
 	1    1350 5950
 	-1   0    0    1   
 $EndComp
-Text GLabel 6200 2450 2    60   BiDi ~ 0
-ENC1_A
 Text GLabel 4400 2250 0    60   BiDi ~ 0
 M1_A
 Text GLabel 4400 2350 0    60   BiDi ~ 0
@@ -903,9 +899,7 @@ F 3 "" H 10800 2850 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	10100 3000 10500 3000
-Wire Wire Line
-	10500 3000 10600 3000
+	10100 3000 10600 3000
 Wire Wire Line
 	10500 3000 10500 3100
 $Comp
@@ -935,9 +929,7 @@ F 3 "" H 10300 3200 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	10100 2900 10300 2900
-Wire Wire Line
-	10300 2900 10600 2900
+	10100 2900 10600 2900
 Wire Wire Line
 	10300 2900 10300 3050
 Connection ~ 10300 2900
@@ -980,8 +972,6 @@ Text GLabel 8500 4750 1    60   BiDi ~ 0
 XDA
 Text GLabel 8600 4750 1    60   BiDi ~ 0
 XCL
-Text GLabel 8800 4750 1    60   BiDi ~ 0
-INT_MPU6050
 $Comp
 L GND #PWR?
 U 1 1 5713D47A
@@ -1007,18 +997,26 @@ $EndComp
 $Comp
 L CONN_01X03 P?
 U 1 1 5713DB4D
-P 7200 1850
-F 0 "P?" H 7200 2050 50  0000 C CNN
-F 1 "JUMPER1" V 7300 1850 50  0000 C CNN
-F 2 "" H 7200 1850 50  0000 C CNN
-F 3 "" H 7200 1850 50  0000 C CNN
-	1    7200 1850
-	0    -1   -1   0   
+P 7400 3200
+F 0 "P?" H 7400 3400 50  0000 C CNN
+F 1 "JUMPER1" V 7500 3200 50  0000 C CNN
+F 2 "" H 7400 3200 50  0000 C CNN
+F 3 "" H 7400 3200 50  0000 C CNN
+	1    7400 3200
+	-1   0    0    1   
 $EndComp
-Text GLabel 7200 2050 3    60   BiDi ~ 0
+Text GLabel 7600 3200 2    60   BiDi ~ 0
 GPIO0
-Text GLabel 7100 2050 3    60   BiDi ~ 0
-ENC2_A
 Text GLabel 7750 1850 0    60   BiDi ~ 0
 VDD
+Text GLabel 6200 2550 2    60   Input ~ 0
+ENC2_A
+Text GLabel 6200 2450 2    60   Input ~ 0
+ENC1_A
+Wire Wire Line
+	7600 2050 7750 2050
+Wire Wire Line
+	7600 3300 8800 3300
+Wire Wire Line
+	8800 3300 8800 4750
 $EndSCHEMATC
