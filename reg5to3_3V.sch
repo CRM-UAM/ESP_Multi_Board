@@ -32,6 +32,7 @@ LIBS:ESP8266
 LIBS:stepper drivers
 LIBS:mpu-6050
 LIBS:MCP23008
+LIBS:microchip_adcdac
 LIBS:ESP_multi_board-cache
 EELAYER 25 0
 EELAYER END

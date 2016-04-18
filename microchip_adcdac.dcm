@@ -1,0 +1,189 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP MCP3002-I/MS
+D MCP3002-I/MS, Dual Channel 10-Bit A/D Converter with SPI Serial Interface, MSOP-8
+K Dual Channel 10-Bit ADC SPI
+F http://ww1.microchip.com/downloads/en/DeviceDoc/21294E.pdf
+$ENDCMP
+#
+$CMP MCP3002-I/P
+D MCP3002-I/P, Dual Channel 10-Bit A/D Converter with SPI Serial Interface, PDIP-8
+K Dual Channel 10-Bit ADC SPI
+F http://ww1.microchip.com/downloads/en/DeviceDoc/21294E.pdf
+$ENDCMP
+#
+$CMP MCP3002-I/SN
+D MCP3002-I/SN, Dual Channel 10-Bit A/D Converter with SPI Serial Interface, SOIC-8
+K Dual Channel 10-Bit ADC SPI
+F http://ww1.microchip.com/downloads/en/DeviceDoc/21294E.pdf
+$ENDCMP
+#
+$CMP MCP3002-I/ST
+D MCP3002-I/ST, Dual Channel 10-Bit A/D Converter with SPI Serial Interface, TSSOP-8
+K Dual Channel 10-Bit ADC SPI
+F http://ww1.microchip.com/downloads/en/DeviceDoc/21294E.pdf
+$ENDCMP
+#
+$CMP MCP3004-I/P
+D MCP3004-I/P, 4-Channel 10-Bit A/D Converters with SPI Serial Interface, PDIP-14
+K 8-Channel 10-Bit ADC SPI
+F http://ww1.microchip.com/downloads/en/DeviceDoc/21295d.pdf
+$ENDCMP
+#
+$CMP MCP3004-I/SL
+D MCP3004-I/SL, 4-Channel 10-Bit A/D Converters with SPI Serial Interface, SOIC-14
+K 8-Channel 10-Bit ADC SPI
+F http://ww1.microchip.com/downloads/en/DeviceDoc/21295d.pdf
+$ENDCMP
+#
+$CMP MCP3004-I/ST
+D MCP3004-I/ST, 4-Channel 10-Bit A/D Converters with SPI Serial Interface, TSOSP-14
+K 8-Channel 10-Bit ADC SPI
+F http://ww1.microchip.com/downloads/en/DeviceDoc/21295d.pdf
+$ENDCMP
+#
+$CMP MCP3008-I/P
+D MCP3008-I/P, 8-Channel 10-Bit A/D Converters with SPI Serial Interface, PDIP-16
+K 8-Channel 10-Bit ADC SPI
+F http://ww1.microchip.com/downloads/en/DeviceDoc/21295d.pdf
+$ENDCMP
+#
+$CMP MCP3008-I/SL
+D MCP3008-I/SL, 8-Channel 10-Bit A/D Converters with SPI Serial Interface, SO-16
+K 8-Channel 10-Bit ADC SPI
+F http://ww1.microchip.com/downloads/en/DeviceDoc/21295d.pdf
+$ENDCMP
+#
+$CMP MCP3204-BI/P
+D MCP3204-BI/P, Quad 12-bit Analog/Digital Converter 1LSB INL, SPI Interface, PDIP-14
+K ADC 12-bit SPI
+F http://ww1.microchip.com/downloads/en/DeviceDoc/21298c.pdf
+$ENDCMP
+#
+$CMP MCP3204-BI/SL
+D MCP3204-BI/SL, Quad 12-bit Analog/Digital Converter 1LSB INL, SPI Interface, SO-14
+K ADC 12-bit SPI
+F http://ww1.microchip.com/downloads/en/DeviceDoc/21298c.pdf
+$ENDCMP
+#
+$CMP MCP3204-BI/ST
+D MCP3204-BI/ST, Quad 12-bit Analog/Digital Converter 1LSB INL, SPI Interface, TSSOP-14
+K ADC 12-bit SPI
+F http://ww1.microchip.com/downloads/en/DeviceDoc/21298c.pdf
+$ENDCMP
+#
+$CMP MCP3204-CI/P
+D MCP3204-CI/P, Quad 12-bit Analog/Digital Converter 2LSB INL, SPI Interface, PDIP-14
+K ADC 12-bit SPI
+F http://ww1.microchip.com/downloads/en/DeviceDoc/21298c.pdf
+$ENDCMP
+#
+$CMP MCP3204-CI/SL
+D MCP3204-CI/SL, Quad 12-bit Analog/Digital Converter 2LSB INL, SPI Interface, SO-14
+K ADC 12-bit SPI
+F http://ww1.microchip.com/downloads/en/DeviceDoc/21298c.pdf
+$ENDCMP
+#
+$CMP MCP3204-CI/ST
+D MCP3204-CI/ST, Quad 12-bit Analog/Digital Converter 2LSB INL, SPI Interface, TSSOP-14
+K ADC 12-bit SPI
+F http://ww1.microchip.com/downloads/en/DeviceDoc/21298c.pdf
+$ENDCMP
+#
+$CMP MCP3421A0T-E/CH
+D MCP3421A0T, Single Delta-Sigma 18bit Analog to Digital Converter, I2C Interface, SOT-23-6
+K Sigma-Delta ADC Converter 18bit I2C
+F http://ww1.microchip.com/downloads/en/DeviceDoc/22003e.pdf
+$ENDCMP
+#
+$CMP MCP3425A0T-E/CH
+D MCP3425A0T, Single Delta-Sigma 16bit Analog to Digital Converter, I2C Interface, SOT-23-6
+K Sigma-Delta ADC Converter 16bit I2C
+F http://ww1.microchip.com/downloads/en/DeviceDoc/22072b.pdf
+$ENDCMP
+#
+$CMP MCP3425A1T-E/CH
+D MCP3425A1T, Single Delta-Sigma 16bit Analog to Digital Converter, I2C Interface, SOT-23-6
+K Sigma-Delta ADC Converter 16bit I2C
+F http://ww1.microchip.com/downloads/en/DeviceDoc/22072b.pdf
+$ENDCMP
+#
+$CMP MCP3425A2T-E/CH
+D MCP3425A2T, Single Delta-Sigma 16bit Analog to Digital Converter, I2C Interface, SOT-23-6
+K Sigma-Delta ADC Converter 16bit I2C
+F http://ww1.microchip.com/downloads/en/DeviceDoc/22072b.pdf
+$ENDCMP
+#
+$CMP MCP3425A3T-E/CH
+D MCP3425A3T, Single Delta-Sigma 16bit Analog to Digital Converter, I2C Interface, SOT-23-6
+K Sigma-Delta ADC Converter 16bit I2C
+F http://ww1.microchip.com/downloads/en/DeviceDoc/22072b.pdf
+$ENDCMP
+#
+$CMP MCP3550-50-E/MS
+D MCP3550-50, Single Delta-Sigma 22bit Analog to Digital Converter, SPI Interface, 50Hz Rejection, MSOP8
+K Sigma-Delta ADC Converter 22bit SPI
+F http://ww1.microchip.com/downloads/en/devicedoc/21950c.pdf
+$ENDCMP
+#
+$CMP MCP3550-60-E/SN
+D MCP3550-60, Single Delta-Sigma 22bit Analog to Digital Converter, SPI Interface, 60Hz Rejection, MSOP8
+K Sigma-Delta ADC Converter 22bit SPI
+F http://ww1.microchip.com/downloads/en/devicedoc/21950c.pdf
+$ENDCMP
+#
+$CMP MCP3551-E/MS
+D MCP3551, Single Delta-Sigma 22bit Analog to Digital Converter, SPI Interface, MSOP8
+K Sigma-Delta ADC Converter 22bit SPI
+F http://ww1.microchip.com/downloads/en/devicedoc/21950c.pdf
+$ENDCMP
+#
+$CMP MCP3553-E/SN
+D MCP3553, Single Delta-Sigma 22bit Analog to Digital Converter, SPI Interface, MSOP8
+K Sigma-Delta ADC Converter 22bit SPI
+F http://ww1.microchip.com/downloads/en/devicedoc/21950c.pdf
+$ENDCMP
+#
+$CMP MCP4728-E/UN
+D MCP4728-E/UN, 12-bit Quad DAC with EEPROM, MSOP-10
+K 12bit DAC 4ch EEPROM
+F http://ww1.microchip.com/downloads/en/DeviceDoc/22187E.pdf
+$ENDCMP
+#
+$CMP MCP4921-E/MS
+D MCP4921, Single 12-bit Digital to Analog Converter, SPI Interface, MSOP-8
+K Single DAC 1ch 12bit SPI
+F http://ww1.microchip.com/downloads/en/devicedoc/21897a.pdf
+$ENDCMP
+#
+$CMP MCP4921-E/P
+D MCP4921, Single 12-bit Digital to Analog Converter, SPI Interface, PDIP-8
+K Single DAC 1ch 12bit SPI
+F http://ww1.microchip.com/downloads/en/devicedoc/21897a.pdf
+$ENDCMP
+#
+$CMP MCP4921-E/SN
+D MCP4921, Single 12-bit Digital to Analog Converter, SPI Interface, SO8
+K Single DAC 1ch 12bit SPI
+F http://ww1.microchip.com/downloads/en/devicedoc/21897a.pdf
+$ENDCMP
+#
+$CMP MCP4922-E/P
+D MCP4922, Dual 12-bit Digital to Analog Converter, SPI Interface, PDIP-14
+K Dual DAC 1ch 12bit SPI
+F http://ww1.microchip.com/downloads/en/devicedoc/21897a.pdf
+$ENDCMP
+#
+$CMP MCP4922-E/SL
+D MCP4922, Dual 12-bit Digital to Analog Converter, SPI Interface, SO14
+K Dual DAC 1ch 12bit SPI
+F http://ww1.microchip.com/downloads/en/devicedoc/21897a.pdf
+$ENDCMP
+#
+$CMP MCP4922-E/ST
+D MCP4922, Dual 12-bit Digital to Analog Converter, SPI Interface, TSSOP-14
+K Dual DAC 1ch 12bit SPI
+F http://ww1.microchip.com/downloads/en/devicedoc/21897a.pdf
+$ENDCMP
+#
+#End Doc Library
