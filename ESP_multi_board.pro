@@ -1,4 +1,4 @@
-update=lunes, 18 '18e' abril '18e' 2016, 00:59:29
+update=lunes, 18 '18e' abril '18e' 2016, 19:15:47
 version=1
 last_client=kicad
 [pcbnew]
@@ -62,3 +62,13 @@ LibName32=mpu-6050
 LibName33=MCP23008
 [general]
 version=1
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=
+SpiceForceRefPrefix=0
+SpiceUseNetNumbers=0
+LabSize=60
