@@ -38,7 +38,7 @@ EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 3
+Sheet 1 2
 Title ""
 Date ""
 Rev ""
@@ -805,10 +805,4 @@ F 3 "" H 6600 1650 50  0000 C CNN
 $EndComp
 Wire Wire Line
 	6450 1150 6450 1650
-$Sheet
-S 8550 4400 500  400 
-U 571696D1
-F0 "regTo5V" 60
-F1 "regTo5V.sch" 60
-$EndSheet
 $EndSCHEMATC
