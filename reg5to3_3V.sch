@@ -65,7 +65,7 @@ U 1 1 57126C5D
 P 4100 3050
 F 0 "C2" H 4125 3150 50  0000 L CNN
 F 1 "100n" H 4125 2950 50  0000 L CNN
-F 2 "Capacitors_SMD:C_1825_HandSoldering" H 4138 2900 50  0001 C CNN
+F 2 "Capacitors_SMD:C_0805_HandSoldering" H 4138 2900 50  0001 C CNN
 F 3 "" H 4100 3050 50  0000 C CNN
 	1    4100 3050
 	1    0    0    -1  
@@ -76,7 +76,7 @@ U 1 1 57126C91
 P 5350 3000
 F 0 "C1" H 5375 3100 50  0000 L CNN
 F 1 "10u" H 5375 2900 50  0000 L CNN
-F 2 "Capacitors_SMD:C_1825_HandSoldering" H 5388 2850 50  0001 C CNN
+F 2 "Capacitors_SMD:C_0805_HandSoldering" H 5388 2850 50  0001 C CNN
 F 3 "" H 5350 3000 50  0000 C CNN
 	1    5350 3000
 	1    0    0    -1  
@@ -96,7 +96,7 @@ Wire Wire Line
 	4100 2750 4100 2900
 Connection ~ 4100 2750
 Text HLabel 3850 2750 0    60   BiDi ~ 0
-5V
+VCC
 Wire Wire Line
 	5100 2750 5600 2750
 Wire Wire Line
