@@ -597,9 +597,8 @@
       "Net-(P101-Pad2)" "Net-(P105-Pad1)" "Net-(P105-Pad10)" "Net-(P105-Pad11)"
       "Net-(P105-Pad12)" "Net-(P105-Pad2)" "Net-(P105-Pad3)" "Net-(P105-Pad4)"
       "Net-(P105-Pad5)" "Net-(P105-Pad6)" "Net-(P105-Pad7)" "Net-(P105-Pad8)"
-      "Net-(P105-Pad9)" "Net-(P108-Pad3)" "Net-(P108-Pad4)" "Net-(P110-Pad3)"
-      "Net-(P110-Pad4)" "Net-(P110-Pad5)" "Net-(P110-Pad6)" "Net-(R101-Pad2)"
-      "Net-(R102-Pad2)" "Net-(U102-Pad2)" "Net-(U104-Pad7)" RX SCL SDA TX
+      "Net-(P105-Pad9)" "Net-(P110-Pad3)" "Net-(P110-Pad4)" "Net-(P110-Pad5)"
+      "Net-(P110-Pad6)" "Net-(R101-Pad2)" "Net-(R102-Pad2)" RX SCL SDA TX
       (circuit
         (use_via Via[0-1]_600:400_um)
       )
