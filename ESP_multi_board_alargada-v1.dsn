@@ -1,4 +1,4 @@
-(pcb /Users/victoruceda/Proyectos/ESP_multi_board/ESP_multi_board_alargada.dsn
+(pcb "/Users/victoruceda/Proyectos/ESP_multi_board/ESP_multi_board_alargada-v1.dsn"
   (parser
     (string_quote ")
     (space_in_quoted_tokens on)
