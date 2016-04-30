@@ -155,14 +155,14 @@ SDA
 Text GLabel 6200 5050 2    60   BiDi ~ 0
 SCL
 $Comp
-L CONN_01X12 P105
+L CONN_01X10 P105
 U 1 1 57125BDF
-P 3650 5100
-F 0 "P105" H 3650 5750 50  0000 C CNN
-F 1 "CONN_01X12" V 3750 5100 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x12" H 3650 5100 50  0001 C CNN
-F 3 "" H 3650 5100 50  0000 C CNN
-	1    3650 5100
+P 3650 5200
+F 0 "P105" H 3650 5850 50  0000 C CNN
+F 1 "CONN_01X12" V 3750 5200 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x12" H 3650 5200 50  0001 C CNN
+F 3 "" H 3650 5200 50  0000 C CNN
+	1    3650 5200
 	-1   0    0    1   
 $EndComp
 $Comp
@@ -639,11 +639,7 @@ F 3 "" H 1850 2850 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3950 4450 4450 4450
-Wire Wire Line
-	3950 4450 3950 4550
-Wire Wire Line
-	3850 4650 4450 4650
+	3850 4450 4450 4450
 Wire Wire Line
 	4450 4850 4350 4850
 Wire Wire Line
@@ -706,8 +702,6 @@ Wire Wire Line
 	3900 5650 3850 5650
 Wire Wire Line
 	3950 5550 3850 5550
-Wire Wire Line
-	3950 4550 3850 4550
 Wire Wire Line
 	9150 1950 9700 1950
 Wire Wire Line
@@ -885,9 +879,9 @@ Wire Wire Line
 Wire Wire Line
 	2200 5350 3100 5350
 Wire Wire Line
-	3100 5550 2200 5550
+	2200 5550 3100 5550
 Wire Wire Line
-	3100 5750 2200 5750
+	2200 5750 3100 5750
 $Comp
 L GND #PWR026
 U 1 1 57240D06
@@ -1076,4 +1070,16 @@ Connection ~ 2300 5150
 Connection ~ 2500 5350
 Connection ~ 2700 5550
 Connection ~ 2900 5750
+NoConn ~ 2350 2950
+NoConn ~ 1700 8400
+Text GLabel 3850 4450 0    60   Input ~ 0
+CURRENT1
+Text GLabel 3850 4600 0    60   Input ~ 0
+CURRENT2
+Wire Wire Line
+	4450 4650 4050 4650
+Wire Wire Line
+	4050 4650 4050 4600
+Wire Wire Line
+	4050 4600 3850 4600
 $EndSCHEMATC
