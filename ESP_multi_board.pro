@@ -1,4 +1,4 @@
-update=domingo, 01 '01e' mayo '01e' 2016, 12:20:30
+update=domingo, 01 '01e' mayo '01e' 2016, 16:54:32
 version=1
 last_client=kicad
 [pcbnew]
@@ -33,6 +33,8 @@ NetFmtName=
 SpiceForceRefPrefix=0
 SpiceUseNetNumbers=0
 LabSize=60
+[general]
+version=1
 [eeschema]
 version=1
 LibDir=
@@ -70,5 +72,4 @@ LibName30=kicad-ESP8266/ESP8266
 LibName31=lib/microchip_adcdac
 LibName32=lib/mcp23008-IOext/MCP23008
 LibName33=lib/stepper-drivers/stepper drivers
-[general]
-version=1
+LibName34=lib/DRV-motorDrivers/Texas_DRV

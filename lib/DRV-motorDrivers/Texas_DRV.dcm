@@ -1,0 +1,13 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP DRV8834_HTSSOP
+D Dual H bridge motor driver
+K DVR DVR8834 HTSSOP DRIVER
+$ENDCMP
+#
+$CMP DRV8834_VQFN
+D Dual H bridge motor driver
+K DVR DVR8834 VQFN DRIVER
+$ENDCMP
+#
+#End Doc Library

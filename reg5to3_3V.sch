@@ -32,6 +32,7 @@ LIBS:ESP8266
 LIBS:microchip_adcdac
 LIBS:MCP23008
 LIBS:stepper drivers
+LIBS:Texas_DRV
 LIBS:ESP_multi_board-cache
 EELAYER 25 0
 EELAYER END
