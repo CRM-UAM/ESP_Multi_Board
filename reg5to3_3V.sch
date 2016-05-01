@@ -28,6 +28,10 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
+LIBS:ESP8266
+LIBS:microchip_adcdac
+LIBS:MCP23008
+LIBS:stepper drivers
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268

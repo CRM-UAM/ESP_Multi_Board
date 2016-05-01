@@ -1,4 +1,4 @@
-update=lunes, 18 '18e' abril '18e' 2016, 21:18:25
+update=domingo, 01 '01e' mayo '01e' 2016, 12:20:30
 version=1
 last_client=kicad
 [pcbnew]
@@ -23,8 +23,6 @@ ModuleOutlineThickness=0.150000000000
 [cvpcb]
 version=1
 NetIExt=net
-[general]
-version=1
 [schematic_editor]
 version=1
 PageLayoutDescrFile=
@@ -69,7 +67,8 @@ LibName27=atmel
 LibName28=contrib
 LibName29=valves
 LibName30=kicad-ESP8266/ESP8266
-LibName31=stepper drivers
-LibName32=mpu-6050
-LibName33=MCP23008
-LibName34=microchip_adcdac
+LibName31=lib/microchip_adcdac
+LibName32=lib/mcp23008-IOext/MCP23008
+LibName33=lib/stepper-drivers/stepper drivers
+[general]
+version=1
