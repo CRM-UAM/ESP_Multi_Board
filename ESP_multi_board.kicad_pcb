@@ -3,12 +3,12 @@
   (general
     (links 107)
     (no_connects 107)
-    (area 83.899999 35.15 209.428572 128.950001)
+    (area 73.82143 35.15 209.428572 128.950001)
     (thickness 1.6)
-    (drawings 50)
+    (drawings 47)
     (tracks 3)
     (zones 0)
-    (modules 75)
+    (modules 61)
     (nets 43)
   )
 
@@ -20,10 +20,10 @@
     (33 F.Adhes user)
     (34 B.Paste user hide)
     (35 F.Paste user hide)
-    (36 B.SilkS user hide)
+    (36 B.SilkS user)
     (37 F.SilkS user)
-    (38 B.Mask user hide)
-    (39 F.Mask user hide)
+    (38 B.Mask user)
+    (39 F.Mask user)
     (40 Dwgs.User user)
     (41 Cmts.User user hide)
     (42 Eco1.User user hide)
@@ -33,7 +33,7 @@
     (46 B.CrtYd user hide)
     (47 F.CrtYd user hide)
     (48 B.Fab user hide)
-    (49 F.Fab user hide)
+    (49 F.Fab user)
   )
 
   (setup
@@ -194,11 +194,76 @@
     (add_net VDD)
   )
 
-  (module Connect:1pin (layer F.Cu) (tedit 57360D28) (tstamp 57360E8A)
+  (module taladros:troquel_3 (layer F.Cu) (tedit 5736E0CA) (tstamp 5734BE37)
+    (at 172.25 110.5 90)
+    (fp_text reference troqel2 (at 0 -1.905 90) (layer F.SilkS) hide
+      (effects (font (size 1 1) (thickness 0.15)))
+    )
+    (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
+      (effects (font (size 1 1) (thickness 0.15)))
+    )
+    (pad 1 thru_hole rect (at -3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
+    (pad 1 thru_hole rect (at 3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
+    (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
+  )
+
+  (module Connect:1pin (layer F.Cu) (tedit 5736DD22) (tstamp 5736DC04)
+    (at 113.5 92.25)
+    (descr "module 1 pin (ou trou mecanique de percage)")
+    (tags DEV)
+    (fp_text reference drill9 (at 0 -3.048) (layer F.SilkS) hide
+      (effects (font (size 1 1) (thickness 0.15)))
+    )
+    (fp_text value 1pin (at 0 2.794) (layer F.Fab) hide
+      (effects (font (size 1 1) (thickness 0.15)))
+    )
+    (pad 1 thru_hole circle (at 0 0) (size 1.5 1.5) (drill 1.5) (layers *.Cu F.SilkS))
+  )
+
+  (module Connect:1pin (layer F.Cu) (tedit 5736DE5E) (tstamp 5736DBD4)
+    (at 113 78)
+    (descr "module 1 pin (ou trou mecanique de percage)")
+    (tags DEV)
+    (fp_text reference drill20 (at 0 -3.048) (layer F.SilkS) hide
+      (effects (font (size 1 1) (thickness 0.15)))
+    )
+    (fp_text value 1pin (at 0 2.794) (layer F.Fab) hide
+      (effects (font (size 1 1) (thickness 0.15)))
+    )
+    (pad 1 thru_hole circle (at 0 0) (size 1.5 1.5) (drill 1.5) (layers *.Cu F.SilkS))
+  )
+
+  (module Connect:1pin (layer F.Cu) (tedit 5736DCED) (tstamp 5736DB1A)
+    (at 161 95)
+    (descr "module 1 pin (ou trou mecanique de percage)")
+    (tags DEV)
+    (fp_text reference drill6 (at 0 -3.048) (layer F.SilkS) hide
+      (effects (font (size 1 1) (thickness 0.15)))
+    )
+    (fp_text value 1pin (at 0 2.794) (layer F.Fab) hide
+      (effects (font (size 1 1) (thickness 0.15)))
+    )
+    (pad 1 thru_hole circle (at 0 0) (size 1.5 1.5) (drill 1.5) (layers *.Cu F.SilkS))
+  )
+
+  (module Connect:1pin (layer F.Cu) (tedit 5736DCE2) (tstamp 5736DAAC)
+    (at 161 78)
+    (descr "module 1 pin (ou trou mecanique de percage)")
+    (tags DEV)
+    (fp_text reference drill5 (at 0 -3.048) (layer F.SilkS) hide
+      (effects (font (size 1 1) (thickness 0.15)))
+    )
+    (fp_text value 1pin (at 0 2.794) (layer F.Fab) hide
+      (effects (font (size 1 1) (thickness 0.15)))
+    )
+    (pad 1 thru_hole circle (at 0 0) (size 1.5 1.5) (drill 1.5) (layers *.Cu F.SilkS))
+  )
+
+  (module Connect:1pin (layer F.Cu) (tedit 5736DD5F) (tstamp 57360E8A)
     (at 86 93)
     (descr "module 1 pin (ou trou mecanique de percage)")
     (tags DEV)
-    (fp_text reference REF** (at 0 -3.048) (layer F.SilkS) hide
+    (fp_text reference drill13 (at 0 -3.048) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value 1pin (at 0 2.794) (layer F.Fab) hide
@@ -207,11 +272,11 @@
     (pad 1 thru_hole circle (at 0 1.125) (size 2.5 2.5) (drill 2.4) (layers *.Cu *.Mask F.SilkS))
   )
 
-  (module Connect:1pin (layer F.Cu) (tedit 57360D69) (tstamp 57360E77)
+  (module Connect:1pin (layer F.Cu) (tedit 5736DD48) (tstamp 57360E77)
     (at 86 77.25)
     (descr "module 1 pin (ou trou mecanique de percage)")
     (tags DEV)
-    (fp_text reference REF** (at 0 -3.048) (layer F.SilkS) hide
+    (fp_text reference drill12 (at 0 -3.048) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value 1pin (at 0 2.794) (layer F.Fab) hide
@@ -220,37 +285,37 @@
     (pad 1 thru_hole circle (at 0 -1.125) (size 2.5 2.5) (drill 2.4) (layers *.Cu *.Mask F.SilkS))
   )
 
-  (module Connect:1pin (layer F.Cu) (tedit 57360D69) (tstamp 57360E64)
+  (module Connect:1pin (layer F.Cu) (tedit 5736DD3B) (tstamp 57360E64)
     (at 96 77.25)
     (descr "module 1 pin (ou trou mecanique de percage)")
     (tags DEV)
-    (fp_text reference REF** (at 0 -3.048) (layer F.SilkS) hide
+    (fp_text reference drill11 (at 0 -3.048) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value 1pin (at 0 2.794) (layer F.Fab) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (pad 1 thru_hole circle (at 0 -1.125) (size 2.5 2.5) (drill 2.4) (layers *.Cu *.Mask F.SilkS))
+    (pad 1 thru_hole circle (at -1 -1.125) (size 2.5 2.5) (drill 2.4) (layers *.Cu *.Mask F.SilkS))
   )
 
-  (module Connect:1pin (layer F.Cu) (tedit 57360D28) (tstamp 57360E49)
+  (module Connect:1pin (layer F.Cu) (tedit 5736DD71) (tstamp 57360E49)
     (at 96 93)
     (descr "module 1 pin (ou trou mecanique de percage)")
     (tags DEV)
-    (fp_text reference REF** (at 0 -3.048) (layer F.SilkS) hide
+    (fp_text reference drill14 (at 0 -3.048) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value 1pin (at 0 2.794) (layer F.Fab) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (pad 1 thru_hole circle (at 0 1.125) (size 2.5 2.5) (drill 2.4) (layers *.Cu *.Mask F.SilkS))
+    (pad 1 thru_hole circle (at -1 1.125) (size 2.5 2.5) (drill 2.4) (layers *.Cu *.Mask F.SilkS))
   )
 
-  (module Connect:1pin (layer F.Cu) (tedit 57360D2B) (tstamp 57360D03)
+  (module Connect:1pin (layer F.Cu) (tedit 5736DCBB) (tstamp 57360D03)
     (at 182 93)
     (descr "module 1 pin (ou trou mecanique de percage)")
     (tags DEV)
-    (fp_text reference REF** (at 0 -3.048) (layer F.SilkS) hide
+    (fp_text reference drill2 (at 0 -3.048) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value 1pin (at 0 2.794) (layer F.Fab) hide
@@ -259,24 +324,11 @@
     (pad 1 thru_hole circle (at 0 1.125) (size 2.5 2.5) (drill 2.4) (layers *.Cu *.Mask F.SilkS))
   )
 
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 57360CE6)
-    (at 172.25 96 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (pad 1 thru_hole rect (at -3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-  )
-
-  (module Connect:1pin (layer F.Cu) (tedit 5734A1D5) (tstamp 57360CDE)
+  (module Connect:1pin (layer F.Cu) (tedit 5736DC8C) (tstamp 57360CDE)
     (at 182 75)
     (descr "module 1 pin (ou trou mecanique de percage)")
     (tags DEV)
-    (fp_text reference REF** (at 0 -3.048) (layer F.SilkS) hide
+    (fp_text reference drill1 (at 0 -3.048) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value 1pin (at 0 2.794) (layer F.Fab)
@@ -285,61 +337,9 @@
     (pad 1 thru_hole circle (at 0 1.125) (size 2.5 2.5) (drill 2.4) (layers *.Cu *.Mask F.SilkS))
   )
 
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 57360CD8)
-    (at 172.25 104.5 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (pad 1 thru_hole rect (at -3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-  )
-
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 57360CD2)
-    (at 172.25 110.5 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (pad 1 thru_hole rect (at -3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-  )
-
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 57360CCC)
-    (at 172.25 87.25 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (pad 1 thru_hole rect (at -3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-  )
-
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 57360CC6)
-    (at 172.25 78.5 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (pad 1 thru_hole rect (at -3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-  )
-
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 57360CC0)
+  (module taladros:troquel_3 (layer F.Cu) (tedit 5736E00C) (tstamp 57360CC0)
     (at 172.25 69.75 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
+    (fp_text reference troqel1 (at 0 -1.905 90) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
@@ -350,87 +350,9 @@
     (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
   )
 
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 57360CBA)
-    (at 172.25 69.75 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (pad 1 thru_hole rect (at -3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-  )
-
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 57360CB4)
-    (at 172.25 78.5 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (pad 1 thru_hole rect (at -3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-  )
-
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 57360CAE)
-    (at 172.25 87.25 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (pad 1 thru_hole rect (at -3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-  )
-
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 57360CA8)
-    (at 172.25 110.5 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (pad 1 thru_hole rect (at -3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-  )
-
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 57360CA2)
-    (at 172.25 104.5 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (pad 1 thru_hole rect (at -3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-  )
-
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 57360C9C)
-    (at 172.25 96 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (pad 1 thru_hole rect (at -3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-  )
-
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 5734BF0A)
+  (module taladros:troquel_3 (layer F.Cu) (tedit 5736E17D) (tstamp 5734BF0A)
     (at 99.5 69.5 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
+    (fp_text reference troquel11 (at 0 -1.905 90) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
@@ -441,9 +363,9 @@
     (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
   )
 
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 5734BF03)
+  (module taladros:troquel_3 (layer F.Cu) (tedit 5736E188) (tstamp 5734BF03)
     (at 99.5 75.5 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
+    (fp_text reference troquel12 (at 0 -1.905 90) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
@@ -454,9 +376,9 @@
     (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
   )
 
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 5734BEFC)
+  (module taladros:troquel_3 (layer F.Cu) (tedit 5736E192) (tstamp 5734BEFC)
     (at 99.5 84.25 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
+    (fp_text reference troquel13 (at 0 -1.905 90) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
@@ -467,9 +389,9 @@
     (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
   )
 
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 5734BED4)
+  (module taladros:troquel_3 (layer F.Cu) (tedit 5736E19C) (tstamp 5734BED4)
     (at 99.5 93 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
+    (fp_text reference troquel14 (at 0 -1.905 90) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
@@ -480,9 +402,9 @@
     (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
   )
 
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 5734BECD)
+  (module taladros:troquel_3 (layer F.Cu) (tedit 5736E1A8) (tstamp 5734BECD)
     (at 99.5 101.75 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
+    (fp_text reference troquel15 (at 0 -1.905 90) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
@@ -493,9 +415,9 @@
     (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
   )
 
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 5734BEC5)
+  (module taladros:troquel_3 (layer F.Cu) (tedit 5736E1BB) (tstamp 5734BEC5)
     (at 99.5 110.5 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
+    (fp_text reference troquel16 (at 0 -1.905 90) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
@@ -506,48 +428,9 @@
     (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
   )
 
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 5734BEB3)
-    (at 172.25 96 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (pad 1 thru_hole rect (at -3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-  )
-
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 5734BEAD)
-    (at 172.25 104.5 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (pad 1 thru_hole rect (at -3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-  )
-
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 5734BEA7)
-    (at 172.25 110.5 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (pad 1 thru_hole rect (at -3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-  )
-
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 5734BEA1)
+  (module taladros:troquel_3 (layer F.Cu) (tedit 5736E0F5) (tstamp 5734BEA1)
     (at 172.25 87.25 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
+    (fp_text reference troquel5 (at 0 -1.905 90) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
@@ -558,9 +441,9 @@
     (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
   )
 
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 5734BE9B)
+  (module taladros:troquel_3 (layer F.Cu) (tedit 5736E0FE) (tstamp 5734BE9B)
     (at 172.25 78.5 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
+    (fp_text reference troquel6 (at 0 -1.905 90) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
@@ -571,74 +454,9 @@
     (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
   )
 
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 5734BE95)
-    (at 172.25 69.75 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (pad 1 thru_hole rect (at -3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-  )
-
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 5734BE72)
-    (at 172.25 69.75 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (pad 1 thru_hole rect (at -3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-  )
-
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 5734BE63)
-    (at 172.25 78.5 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (pad 1 thru_hole rect (at -3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-  )
-
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 5734BE40)
-    (at 172.25 87.25 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (pad 1 thru_hole rect (at -3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-  )
-
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 5734BE37)
-    (at 172.25 110.5 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (pad 1 thru_hole rect (at -3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 3 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-    (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
-  )
-
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 5734BE2F)
+  (module taladros:troquel_3 (layer F.Cu) (tedit 5736E0D7) (tstamp 5734BE2F)
     (at 172.25 104.5 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
+    (fp_text reference troquel3 (at 0 -1.905 90) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
@@ -649,11 +467,11 @@
     (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
   )
 
-  (module Connect:1pin (layer F.Cu) (tedit 57360D28) (tstamp 5734BE0B)
+  (module Connect:1pin (layer F.Cu) (tedit 5736DCC6) (tstamp 5734BE0B)
     (at 175 93)
     (descr "module 1 pin (ou trou mecanique de percage)")
     (tags DEV)
-    (fp_text reference REF** (at 0 -3.048) (layer F.SilkS) hide
+    (fp_text reference drill3 (at 0 -3.048) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value 1pin (at 0 2.794) (layer F.Fab) hide
@@ -662,11 +480,11 @@
     (pad 1 thru_hole circle (at 0 1.125) (size 2.5 2.5) (drill 2.4) (layers *.Cu *.Mask F.SilkS))
   )
 
-  (module Connect:1pin (layer F.Cu) (tedit 57360D69) (tstamp 57336E8E)
+  (module Connect:1pin (layer F.Cu) (tedit 5736DCD2) (tstamp 57336E8E)
     (at 175 77.25)
     (descr "module 1 pin (ou trou mecanique de percage)")
     (tags DEV)
-    (fp_text reference REF** (at 0 -3.048) (layer F.SilkS) hide
+    (fp_text reference drill4 (at 0 -3.048) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value 1pin (at 0 2.794) (layer F.Fab) hide
@@ -675,11 +493,11 @@
     (pad 1 thru_hole circle (at 0 -1.125) (size 2.5 2.5) (drill 2.4) (layers *.Cu *.Mask F.SilkS))
   )
 
-  (module Connect:1pin (layer F.Cu) (tedit 57336E1C) (tstamp 57336E46)
+  (module Connect:1pin (layer F.Cu) (tedit 5736DD0C) (tstamp 57336E46)
     (at 149.3 110)
     (descr "module 1 pin (ou trou mecanique de percage)")
     (tags DEV)
-    (fp_text reference REF** (at 0 -3.048) (layer F.SilkS) hide
+    (fp_text reference drill7 (at 0 -3.048) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value 1pin (at 0 2.794) (layer F.Fab)
@@ -688,20 +506,20 @@
     (pad 1 thru_hole circle (at 0 0) (size 3.064 3.064) (drill 3.048) (layers *.Cu *.Mask F.SilkS))
   )
 
-  (module Connect:1pin (layer F.Cu) (tedit 57336E1C) (tstamp 5733753E)
+  (module Connect:1pin (layer F.Cu) (tedit 5736DD18) (tstamp 5733753E)
     (at 124 110)
     (descr "module 1 pin (ou trou mecanique de percage)")
     (tags DEV)
-    (fp_text reference REF** (at 0 -3.048) (layer F.SilkS) hide
+    (fp_text reference drill8 (at 0 -3.048) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value 1pin (at 0 2.794) (layer F.Fab)
+    (fp_text value 1pin (at 0 2.794) (layer F.Fab) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (pad 1 thru_hole circle (at 0 0) (size 3.064 3.064) (drill 3.048) (layers *.Cu *.Mask F.SilkS))
   )
 
-  (module Pin_Headers:Pin_Header_Straight_1x06 (layer F.Cu) (tedit 573351C9) (tstamp 5714087A)
+  (module Pin_Headers:Pin_Header_Straight_1x06 (layer F.Cu) (tedit 5736DB61) (tstamp 5714087A)
     (at 109.474 75.438 90)
     (descr "Through hole pin header")
     (tags "pin header")
@@ -709,7 +527,7 @@
     (fp_text reference P102 (at 0 -5.1 90) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value CONN_01X06 (at 0 -3.1 90) (layer F.Fab)
+    (fp_text value CONN_01X06 (at 0 -3.1 90) (layer F.Fab) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_line (start -1.75 -1.75) (end -1.75 14.45) (layer F.CrtYd) (width 0.05))
@@ -819,7 +637,7 @@
   )
 
   (module TO_SOT_Packages_SMD:SOT-223 (layer F.Cu) (tedit 573351AB) (tstamp 57140998)
-    (at 118.5 96 270)
+    (at 119.5 96 270)
     (descr "module CMS SOT223 4 pins")
     (tags "CMS SOT")
     (path /57126BEE/57126C2F)
@@ -1292,7 +1110,7 @@
   )
 
   (module diodos_smd:SMD_D_SMA-Sub-2 (layer F.Cu) (tedit 573351B4) (tstamp 5728FD18)
-    (at 109.728 72.898)
+    (at 109.5 72.75)
     (path /57240E84)
     (fp_text reference D103 (at 0 0.5) (layer F.SilkS) hide
       (effects (font (size 0.5 0.5) (thickness 0.1)))
@@ -1307,7 +1125,7 @@
   )
 
   (module diodos_smd:SMD_D_SMA-Sub-2 (layer F.Cu) (tedit 573351C2) (tstamp 5728FD1D)
-    (at 115.316 72.898 180)
+    (at 115.25 72.75 180)
     (path /572410DA)
     (fp_text reference D104 (at 0 0.5 180) (layer F.SilkS) hide
       (effects (font (size 0.5 0.5) (thickness 0.1)))
@@ -1455,7 +1273,7 @@
   )
 
   (module Resistors_SMD:R_0805_HandSoldering (layer F.Cu) (tedit 573351AF) (tstamp 5728FD45)
-    (at 125.476 95.504 90)
+    (at 125.5 96 90)
     (descr "Resistor SMD 0805, hand soldering")
     (tags "resistor 0805")
     (path /57191663)
@@ -1484,7 +1302,7 @@
   )
 
   (module Capacitors_SMD:C_0805_HandSoldering (layer F.Cu) (tedit 5733519E) (tstamp 57290051)
-    (at 115.316 102.87 270)
+    (at 115 103 270)
     (descr "Capacitor SMD 0805, hand soldering")
     (tags "capacitor 0805")
     (path /57126BEE/57126C5D)
@@ -1599,7 +1417,7 @@
   )
 
   (module Resistors_SMD:R_0805_HandSoldering (layer F.Cu) (tedit 573351C5) (tstamp 57334D5E)
-    (at 103.8 73 180)
+    (at 103.75 72.75 180)
     (descr "Resistor SMD 0805, hand soldering")
     (tags "resistor 0805")
     (path /5712A576)
@@ -1628,7 +1446,7 @@
   )
 
   (module Resistors_SMD:R_0805_HandSoldering (layer F.Cu) (tedit 573351D6) (tstamp 57334D63)
-    (at 105.41 67.818 180)
+    (at 105.5 67 180)
     (descr "Resistor SMD 0805, hand soldering")
     (tags "resistor 0805")
     (path /5712A472)
@@ -1656,7 +1474,7 @@
     )
   )
 
-  (module Pin_Headers:Pin_Header_Angled_1x02 (layer F.Cu) (tedit 573351FB) (tstamp 57334EFC)
+  (module Pin_Headers:Pin_Header_Angled_1x02 (layer F.Cu) (tedit 5736DB7C) (tstamp 57334EFC)
     (at 140.716 76.454 270)
     (descr "Through hole pin header")
     (tags "pin header")
@@ -1799,15 +1617,15 @@
     )
   )
 
-  (module Socket_Strips:Socket_Strip_Straight_1x08 (layer F.Cu) (tedit 0) (tstamp 573391BF)
-    (at 102.2 70.4)
+  (module Socket_Strips:Socket_Strip_Straight_1x08 (layer F.Cu) (tedit 5736DB59) (tstamp 573391BF)
+    (at 102.5 69.75)
     (descr "Through hole socket strip")
     (tags "socket strip")
     (path /5713D03F)
     (fp_text reference P107 (at 0 -5.1) (layer F.SilkS)
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value CONN_I2C_MPU6050 (at 0 -3.1) (layer F.Fab)
+    (fp_text value CONN_I2C_MPU6050 (at 0 -3.1) (layer F.Fab) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_line (start -1.75 -1.75) (end -1.75 1.75) (layer F.CrtYd) (width 0.05))
@@ -1878,9 +1696,9 @@
     )
   )
 
-  (module taladros:troquel_3 (layer F.Cu) (tedit 57349FE4) (tstamp 5734BE20)
+  (module taladros:troquel_3 (layer F.Cu) (tedit 5736E0E9) (tstamp 5734BE20)
     (at 172.25 96 90)
-    (fp_text reference REF** (at 0 -1.905 90) (layer F.SilkS) hide
+    (fp_text reference troquel4 (at 0 -1.905 90) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value troquel (at 0 -3.175 90) (layer F.Fab) hide
@@ -1891,6 +1709,18 @@
     (pad 1 thru_hole rect (at 0 0 90) (size 2.1 1.1) (drill oval 2 1) (layers *.Cu *.Mask F.SilkS))
   )
 
+  (dimension 80 (width 0.3) (layer Dwgs.User)
+    (gr_text 80.000mm (at 135 51.15) (layer Dwgs.User)
+      (effects (font (size 1.5 1.5) (thickness 0.3)))
+    )
+    (feature1 (pts (xy 175 76) (xy 175 49.8)))
+    (feature2 (pts (xy 95 76) (xy 95 49.8)))
+    (crossbar (pts (xy 95 52.5) (xy 175 52.5)))
+    (arrow1a (pts (xy 175 52.5) (xy 173.873496 53.086421)))
+    (arrow1b (pts (xy 175 52.5) (xy 173.873496 51.913579)))
+    (arrow2a (pts (xy 95 52.5) (xy 96.126504 53.086421)))
+    (arrow2b (pts (xy 95 52.5) (xy 96.126504 51.913579)))
+  )
   (gr_text A0 (at 170.1862 96.0628) (layer F.SilkS) (tstamp 57360CFA)
     (effects (font (size 1 1) (thickness 0.2)))
   )
@@ -1903,8 +1733,6 @@
   (gr_text A3 (at 170.2624 103.4923) (layer F.SilkS) (tstamp 57360CF7)
     (effects (font (size 1 1) (thickness 0.2)))
   )
-  (gr_line (start 84 65) (end 184 65) (angle 90) (layer Edge.Cuts) (width 0.2) (tstamp 57360CF5))
-  (gr_line (start 184 115) (end 84 115) (angle 90) (layer Edge.Cuts) (width 0.2) (tstamp 57360CF4))
   (dimension 72.75 (width 0.3) (layer Dwgs.User) (tstamp 57360CF0)
     (gr_text 72.750mm (at 135.875 127.6) (layer Dwgs.User) (tstamp 57360CF1)
       (effects (font (size 1.5 1.5) (thickness 0.3)))
@@ -1928,30 +1756,6 @@
     (arrow1b (pts (xy 187.5 94.25) (xy 188.086421 93.123496)))
     (arrow2a (pts (xy 187.5 76.25) (xy 186.913579 77.376504)))
     (arrow2b (pts (xy 187.5 76.25) (xy 188.086421 77.376504)))
-  )
-  (dimension 78.5 (width 0.3) (layer Dwgs.User) (tstamp 57360CEC)
-    (gr_text 78.500mm (at 135.75 46.9) (layer Dwgs.User) (tstamp 57360CED)
-      (effects (font (size 1.5 1.5) (thickness 0.3)))
-    )
-    (feature1 (pts (xy 96.5 76.25) (xy 96.5 45.55)))
-    (feature2 (pts (xy 175 76.25) (xy 175 45.55)))
-    (crossbar (pts (xy 175 48.25) (xy 96.5 48.25)))
-    (arrow1a (pts (xy 96.5 48.25) (xy 97.626504 47.663579)))
-    (arrow1b (pts (xy 96.5 48.25) (xy 97.626504 48.836421)))
-    (arrow2a (pts (xy 175 48.25) (xy 173.873496 47.663579)))
-    (arrow2b (pts (xy 175 48.25) (xy 173.873496 48.836421)))
-  )
-  (dimension 78.5 (width 0.3) (layer Dwgs.User)
-    (gr_text 78.500mm (at 135.75 46.9) (layer Dwgs.User)
-      (effects (font (size 1.5 1.5) (thickness 0.3)))
-    )
-    (feature1 (pts (xy 96.5 76.25) (xy 96.5 45.55)))
-    (feature2 (pts (xy 175 76.25) (xy 175 45.55)))
-    (crossbar (pts (xy 175 48.25) (xy 96.5 48.25)))
-    (arrow1a (pts (xy 96.5 48.25) (xy 97.626504 47.663579)))
-    (arrow1b (pts (xy 96.5 48.25) (xy 97.626504 48.836421)))
-    (arrow2a (pts (xy 175 48.25) (xy 173.873496 47.663579)))
-    (arrow2b (pts (xy 175 48.25) (xy 173.873496 48.836421)))
   )
   (dimension 18 (width 0.3) (layer Dwgs.User)
     (gr_text 18.000mm (at 79.9 85.25 90) (layer Dwgs.User)
@@ -2056,22 +1860,22 @@
   (gr_text A0 (at 170.1862 96.0628) (layer F.SilkS)
     (effects (font (size 1 1) (thickness 0.2)))
   )
-  (gr_text D4 (at 102.616 109.982 270) (layer F.SilkS)
+  (gr_text D4 (at 102.616 110.982 270) (layer F.SilkS)
     (effects (font (size 1 1) (thickness 0.2)))
   )
-  (gr_text D5 (at 105.156 109.982 270) (layer F.SilkS)
+  (gr_text D5 (at 105.156 110.982 270) (layer F.SilkS)
     (effects (font (size 1 1) (thickness 0.2)))
   )
-  (gr_text D6 (at 107.442 109.982 270) (layer F.SilkS)
+  (gr_text D6 (at 107.442 110.982 270) (layer F.SilkS)
     (effects (font (size 1 1) (thickness 0.2)))
   )
-  (gr_text D7 (at 109.982 109.982 270) (layer F.SilkS)
+  (gr_text D7 (at 109.982 110.982 270) (layer F.SilkS)
     (effects (font (size 1 1) (thickness 0.2)))
   )
   (gr_text "Gnd\n" (at 115.316 110.236 270) (layer F.SilkS)
     (effects (font (size 1 1) (thickness 0.2)))
   )
-  (gr_text Vcc (at 112.776 110.236 270) (layer F.SilkS)
+  (gr_text Vcc (at 112.776 111.236 270) (layer F.SilkS)
     (effects (font (size 1 1) (thickness 0.2)))
   )
   (gr_text + (at 121.6533 102.3874) (layer F.SilkS)

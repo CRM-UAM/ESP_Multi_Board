@@ -1,0 +1,119 @@
+
+(rules PCB ESP_multi_board
+  (snap_angle 
+    fortyfive_degree
+  )
+  (autoroute_settings
+    (fanout off)
+    (autoroute on)
+    (postroute on)
+    (vias on)
+    (via_costs 50)
+    (plane_via_costs 5)
+    (start_ripup_costs 100)
+    (start_pass_no 8592)
+    (layer_rule F.Cu
+      (active on)
+      (preferred_direction horizontal)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 3.0)
+    )
+    (layer_rule B.Cu
+      (active on)
+      (preferred_direction vertical)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 1.5)
+    )
+  )
+  (rule
+    (width 250.0)
+    (clear 250.2)
+    (clear 125.0 (type smd_to_turn_gap))
+    (clear 300.2 (type default_power))
+    (clear 62.6 (type smd_smd))
+    (clear 300.2 (type smd_power))
+    (clear 300.2 (type "kicad_default"_power))
+    (clear 300.2 (type power_power))
+  )
+  (padstack "Via[0-1]_600:400_um"
+    (shape
+      (circle F.Cu 600.0 0.0 0.0)
+    )
+    (shape
+      (circle B.Cu 600.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (padstack "Via[0-1]_800:400_um"
+    (shape
+      (circle F.Cu 800.0 0.0 0.0)
+    )
+    (shape
+      (circle B.Cu 800.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (via 
+    "Via[0-1]_600:400_um" "Via[0-1]_600:400_um" default
+  )
+  (via 
+    "Via[0-1]_800:400_um" "Via[0-1]_800:400_um" default
+  )
+  (via 
+    "Via[0-1]_600:400_um-kicad_default" "Via[0-1]_600:400_um" "kicad_default"
+  )
+  (via 
+    "Via[0-1]_800:400_um-kicad_default" "Via[0-1]_800:400_um" "kicad_default"
+  )
+  (via 
+    "Via[0-1]_600:400_um-power" "Via[0-1]_600:400_um" power
+  )
+  (via 
+    "Via[0-1]_800:400_um-power" "Via[0-1]_800:400_um" power
+  )
+  (via_rule
+    default "Via[0-1]_600:400_um"
+  )
+  (via_rule
+    "kicad_default" "Via[0-1]_600:400_um-kicad_default"
+  )
+  (via_rule
+    power "Via[0-1]_800:400_um-power"
+  )
+  (class default
+    (clearance_class default)
+    (via_rule default)
+    (rule
+      (width 250.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class "kicad_default"
+    M1+ "M1-" "ENC1_A" "ENC1_B" M2+ "M2-" "ENC2_A" "ENC2_B"
+    "Net-(P105-Pad1)" "Net-(P105-Pad2)" "Net-(P105-Pad3)" "Net-(P105-Pad4)" "Net-(P105-Pad5)" "Net-(P105-Pad6)" TX RX
+    SDA SCL "Net-(R101-Pad2)" "Net-(R102-Pad2)" "M1_A" "M1_B" "M2_B" "M2_A"
+    EN1 EN2 "Net-(P108-Pad3)" "Net-(P108-Pad4)" "Net-(P108-Pad5)" "Net-(P108-Pad6)" "Net-(R103-Pad1)" "Net-(P103-Pad1)"
+    CURRENT1 CURRENT2 "Net-(P109-Pad1)" "Net-(P109-Pad2)" "Net-(P109-Pad3)" "Net-(P109-Pad4)" "Net-(P101-Pad2)"
+    (clearance_class "kicad_default")
+    (via_rule kicad_default)
+    (rule
+      (width 250.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class power
+    VDD GND VCC
+    (clearance_class power)
+    (via_rule power)
+    (rule
+      (width 250.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+)
