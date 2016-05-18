@@ -343,20 +343,20 @@ Text GLabel 3350 2300 0    60   Input ~ 0
 ENC2_A
 Text GLabel 3350 2200 0    60   Input ~ 0
 ENC1_A
-Text GLabel 10200 1350 0    60   BiDi ~ 0
+Text GLabel 10200 2250 0    60   BiDi ~ 0
 VDD
 Text GLabel 1800 3800 1    60   Output ~ 0
 M1+
 $Comp
 L GND #PWR30
 U 1 1 57143D77
-P 10200 1250
-F 0 "#PWR30" H 10200 1000 50  0001 C CNN
-F 1 "GND" H 10200 1100 50  0000 C CNN
-F 2 "" H 10200 1250 50  0000 C CNN
-F 3 "" H 10200 1250 50  0000 C CNN
-	1    10200 1250
-	0    1    1    0   
+P 10200 2350
+F 0 "#PWR30" H 10200 2100 50  0001 C CNN
+F 1 "GND" H 10200 2200 50  0000 C CNN
+F 2 "" H 10200 2350 50  0000 C CNN
+F 3 "" H 10200 2350 50  0000 C CNN
+	1    10200 2350
+	0    1    -1   0   
 $EndComp
 $Comp
 L GND #PWR29
@@ -503,24 +503,24 @@ Text GLabel 3350 2400 0    60   Input ~ 0
 ENC1_B
 Text GLabel 3350 2500 0    60   Input ~ 0
 ENC2_B
-Text GLabel 9300 2150 2    60   Output ~ 0
+Text GLabel 9900 1450 2    60   Output ~ 0
 M1_A
-Text GLabel 9500 2050 2    60   Output ~ 0
+Text GLabel 9700 1550 2    60   Output ~ 0
 M1_B
-Text GLabel 9700 1950 2    60   Output ~ 0
+Text GLabel 9500 1650 2    60   Output ~ 0
 M2_A
-Text GLabel 9900 1850 2    60   Output ~ 0
+Text GLabel 9300 1750 2    60   Output ~ 0
 M2_B
 $Comp
 L CONN_01X06 P108
 U 1 1 571568CA
-P 10400 1500
-F 0 "P108" H 10400 1850 50  0000 C CNN
-F 1 "CONN_PINES_DIG" V 10500 1500 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x06" H 10400 1500 50  0001 C CNN
-F 3 "" H 10400 1500 50  0000 C CNN
-	1    10400 1500
-	1    0    0    -1  
+P 10400 2100
+F 0 "P108" H 10400 2450 50  0000 C CNN
+F 1 "CONN_PINES_DIG" V 10500 2100 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x06" H 10400 2100 50  0001 C CNN
+F 3 "" H 10400 2100 50  0000 C CNN
+	1    10400 2100
+	1    0    0    1   
 $EndComp
 $Comp
 L GND #PWR24
@@ -668,17 +668,17 @@ Wire Wire Line
 Wire Wire Line
 	7250 4850 7500 4950
 Wire Wire Line
-	9150 1950 9700 1950
+	9150 1550 9700 1550
 Wire Wire Line
-	9900 1850 9150 1850
+	9900 1450 9150 1450
 Wire Wire Line
-	9150 1750 10200 1750
+	9150 1850 10200 1850
 Wire Wire Line
-	10200 1650 9150 1650
+	10200 1950 9150 1950
 Wire Wire Line
-	9150 1550 10200 1550
+	9150 2050 10200 2050
 Wire Wire Line
-	10200 1450 9150 1450
+	10200 2150 9150 2150
 Wire Wire Line
 	3250 1700 3250 1900
 Wire Wire Line
@@ -711,9 +711,9 @@ Connection ~ 7700 1700
 Wire Wire Line
 	8300 3800 8300 3850
 Wire Wire Line
-	9150 2150 9300 2150
+	9150 1750 9300 1750
 Wire Wire Line
-	9150 2050 9500 2050
+	9150 1650 9500 1650
 Wire Wire Line
 	5250 2000 5150 2000
 Wire Wire Line
