@@ -3,4 +3,4 @@ Diseño de una nueva placa basada en el módulo ESP8266 con conextividad WIFI y 
 
 ##Librerias
 + [Arduino IDE for ESP8266](http://www.arduinesp.com/ "ArduinESP")
-+ [MCP23998 lib for Arduino](https://github.com/adafruit/Adafruit-MCP23008-library "MCP23008 library")
++ [MCP23008 lib for Arduino](https://github.com/adafruit/Adafruit-MCP23008-library "MCP23008 library")
