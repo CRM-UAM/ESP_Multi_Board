@@ -14,14 +14,14 @@
 
   (page A4)
   (layers
-    (0 F.Cu signal)
-    (31 B.Cu signal)
+    (0 F.Cu signal hide)
+    (31 B.Cu signal hide)
     (32 B.Adhes user hide)
     (33 F.Adhes user hide)
     (34 B.Paste user hide)
     (35 F.Paste user hide)
     (36 B.SilkS user)
-    (37 F.SilkS user)
+    (37 F.SilkS user hide)
     (38 B.Mask user)
     (39 F.Mask user)
     (40 Dwgs.User user)
@@ -287,14 +287,14 @@
     (pad 1 thru_hole circle (at 0 -1.125) (size 2.5 2.5) (drill 2.4) (layers *.Cu *.Mask F.SilkS))
   )
 
-  (module Connect:1pin (layer F.Cu) (tedit 5736DD0C) (tstamp 57336E46)
+  (module Connect:1pin (layer F.Cu) (tedit 577CF880) (tstamp 57336E46)
     (at 147.8026 107.4674)
     (descr "module 1 pin (ou trou mecanique de percage)")
     (tags DEV)
     (fp_text reference drill7 (at 0 -3.048) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value 1pin (at 0 2.794) (layer F.Fab)
+    (fp_text value 1pin (at 0 2.794) (layer F.Fab) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (pad 1 thru_hole circle (at 0 0) (size 3.064 3.064) (drill 3.048) (layers *.Cu *.Mask F.SilkS))
@@ -354,7 +354,7 @@
     )
   )
 
-  (module Pin_Headers:Pin_Header_Straight_1x06 (layer F.Cu) (tedit 573351E3) (tstamp 571408B2)
+  (module Pin_Headers:Pin_Header_Straight_1x06 (layer F.Cu) (tedit 577CF84F) (tstamp 571408B2)
     (at 168.402 75.8825 270)
     (descr "Through hole pin header")
     (tags "pin header")
@@ -362,7 +362,7 @@
     (fp_text reference P104 (at 0 -5.1 270) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value CONN_01X06 (at 0 -3.1 270) (layer F.Fab)
+    (fp_text value CONN_01X06 (at 2.3675 6.352 360) (layer F.Fab) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_line (start -1.75 -1.75) (end -1.75 14.45) (layer F.CrtYd) (width 0.05))
@@ -395,7 +395,7 @@
     )
   )
 
-  (module Pin_Headers:Pin_Header_Straight_1x03 (layer F.Cu) (tedit 5733518F) (tstamp 571408DF)
+  (module Pin_Headers:Pin_Header_Straight_1x03 (layer F.Cu) (tedit 577CF892) (tstamp 571408DF)
     (at 124.0282 97.536)
     (descr "Through hole pin header")
     (tags "pin header")
@@ -403,7 +403,7 @@
     (fp_text reference P106 (at 0 -5.1) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value CONN_01X03 (at 0 -3.1) (layer F.Fab)
+    (fp_text value CONN_01X03 (at 0 -3.1) (layer F.Fab) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_line (start -1.75 -1.75) (end -1.75 6.85) (layer F.CrtYd) (width 0.05))
@@ -439,7 +439,7 @@
     (fp_text reference U1 (at 0 -0.762 270) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value LD1117S33TR (at 0 0.762 270) (layer F.Fab)
+    (fp_text value LD1117S33TR (at -2.1414 0.0754 270) (layer F.Fab)
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_line (start -3.556 1.524) (end -3.556 4.572) (layer F.SilkS) (width 0.15))
@@ -472,7 +472,7 @@
     (fp_text reference U102 (at 1.5 16.6 180) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value ESP-12 (at 6.992 1 180) (layer F.Fab)
+    (fp_text value ESP-12 (at 7.1416 6.704 180) (layer F.Fab)
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_line (start -2.25 -0.5) (end -2.25 -8.75) (layer F.CrtYd) (width 0.05))
@@ -599,7 +599,7 @@
     )
   )
 
-  (module Pin_Headers:Pin_Header_Straight_1x06 (layer F.Cu) (tedit 573351A6) (tstamp 571559D6)
+  (module Pin_Headers:Pin_Header_Straight_1x06 (layer F.Cu) (tedit 577CF896) (tstamp 571559D6)
     (at 117.1956 107.8992 270)
     (descr "Through hole pin header")
     (tags "pin header")
@@ -607,7 +607,7 @@
     (fp_text reference P108 (at 0 -5.1 270) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value CONN_PINES_DIG (at 0 -3.1 270) (layer F.Fab)
+    (fp_text value CONN_PINES_DIG (at 0 -3.1 270) (layer F.Fab) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_line (start -1.75 -1.75) (end -1.75 14.45) (layer F.CrtYd) (width 0.05))
@@ -649,7 +649,7 @@
     (fp_text reference C1 (at 0 -2.3 180) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value 10u (at 0 2.3 180) (layer F.Fab)
+    (fp_text value 10u (at 0 4.0614 180) (layer F.Fab)
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_line (start -2.3 -1.15) (end 2.3 -1.15) (layer F.CrtYd) (width 0.05))
@@ -677,7 +677,7 @@
     (fp_text reference SW101 (at -1 -4 270) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value SW_PUSH_SMALL (at 0 0 270) (layer F.Fab)
+    (fp_text value SW_PUSH_SMALL (at -1.9732 0 270) (layer F.Fab)
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_line (start -4.5 -3.25) (end 4.5 -3.25) (layer F.CrtYd) (width 0.05))
@@ -783,7 +783,7 @@
     (fp_text reference R106 (at 0 -2.3 180) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value 0.5 (at -0.0635 -0.4318 180) (layer F.Fab)
+    (fp_text value 0.5 (at -0.0354 0.1774 270) (layer F.Fab)
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_line (start -2.2 -1.2) (end 2.2 -1.2) (layer F.CrtYd) (width 0.05))
@@ -812,7 +812,7 @@
     (fp_text reference R107 (at 0 -2.3 270) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value 0.5 (at -0.0254 -0.3556 270) (layer F.Fab)
+    (fp_text value 0.5 (at 0.005 0.016 360) (layer F.Fab)
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_line (start -2.2 -1.2) (end 2.2 -1.2) (layer F.CrtYd) (width 0.05))
@@ -841,7 +841,7 @@
     (fp_text reference C102 (at 0 -2.1) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value 0.1u (at 0 2.1) (layer F.Fab)
+    (fp_text value 0.1u (at 4.0204 2.3762 180) (layer F.Fab)
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_line (start -2.3 -1) (end 2.3 -1) (layer F.CrtYd) (width 0.05))
@@ -990,7 +990,7 @@
     (fp_text reference R101 (at 0 -2.1 270) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value 10k (at 0 2.1 180) (layer F.Fab)
+    (fp_text value 10k (at 0.1018 -1.661 180) (layer F.Fab)
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_line (start -2.4 -1) (end 2.4 -1) (layer F.CrtYd) (width 0.05))
@@ -1019,7 +1019,7 @@
     (fp_text reference R102 (at 0 -2.1 270) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value 10k (at 0 2.1 270) (layer F.Fab)
+    (fp_text value 10k (at 0.8394 1.4532 270) (layer F.Fab)
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_line (start -2.4 -1) (end 2.4 -1) (layer F.CrtYd) (width 0.05))
@@ -1048,7 +1048,7 @@
     (fp_text reference R103 (at 0 -2.1) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value 10k (at 0 2.1) (layer F.Fab)
+    (fp_text value 10k (at 0.0536 -1.6022) (layer F.Fab)
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_line (start -2.4 -1) (end 2.4 -1) (layer F.CrtYd) (width 0.05))
@@ -1077,7 +1077,7 @@
     (fp_text reference C2 (at 0 -2.1) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value 100n (at 0 2.1) (layer F.Fab)
+    (fp_text value 100n (at 0.0852 1.5778) (layer F.Fab)
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_line (start -2.3 -1) (end 2.3 -1) (layer F.CrtYd) (width 0.05))
@@ -1106,7 +1106,7 @@
     (fp_text reference C101 (at 0 -2.3 180) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value 10u (at 0 2.3 180) (layer F.Fab)
+    (fp_text value 10u (at 0.0208 -0.2476 270) (layer F.Fab)
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_line (start -2.3 -1.15) (end 2.3 -1.15) (layer F.CrtYd) (width 0.05))
@@ -1135,7 +1135,7 @@
     (fp_text reference U103 (at 0 -3.5) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value MAX11605EEE+ (at 0 3.5) (layer F.Fab)
+    (fp_text value MAX11605EEE+ (at 1.1026 -3.1542 90) (layer F.Fab)
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_line (start -3.45 -2.75) (end -3.45 2.75) (layer F.CrtYd) (width 0.05))
@@ -1192,7 +1192,7 @@
     (fp_text reference R104 (at 0 -2.1 180) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value 4.7k (at 0 2.1 180) (layer F.Fab)
+    (fp_text value 4.7k (at -0.0634 1.6236 180) (layer F.Fab)
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_line (start -2.4 -1) (end 2.4 -1) (layer F.CrtYd) (width 0.05))
@@ -1221,7 +1221,7 @@
     (fp_text reference R105 (at 0 -2.1 180) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value 4.7k (at 0 2.1 180) (layer F.Fab)
+    (fp_text value 4.7k (at 3.9866 0.4318 180) (layer F.Fab)
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_line (start -2.4 -1) (end 2.4 -1) (layer F.CrtYd) (width 0.05))
@@ -1241,7 +1241,7 @@
     )
   )
 
-  (module Pin_Headers:Pin_Header_Angled_1x02 (layer F.Cu) (tedit 5736DB7C) (tstamp 57334EFC)
+  (module Pin_Headers:Pin_Header_Angled_1x02 (layer F.Cu) (tedit 577CF84C) (tstamp 57334EFC)
     (at 140.8684 71.9074 270)
     (descr "Through hole pin header")
     (tags "pin header")
@@ -1249,7 +1249,7 @@
     (fp_text reference P101 (at 0 -5.1 270) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value CONN_01X02 (at 0 -3.1 270) (layer F.Fab)
+    (fp_text value CONN_01X02 (at 7.2426 1.1184 270) (layer F.Fab) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_line (start -1.5 -1.75) (end -1.5 4.3) (layer F.CrtYd) (width 0.05))
@@ -1292,7 +1292,7 @@
     )
   )
 
-  (module Pin_Headers:Pin_Header_Angled_1x02 (layer F.Cu) (tedit 573351FF) (tstamp 57334F01)
+  (module Pin_Headers:Pin_Header_Angled_1x02 (layer F.Cu) (tedit 577CF848) (tstamp 57334F01)
     (at 132.3848 71.9836 270)
     (descr "Through hole pin header")
     (tags "pin header")
@@ -1300,7 +1300,7 @@
     (fp_text reference P103 (at 0 -5.1 270) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value CONN_01X02 (at 0 -3.1 270) (layer F.Fab)
+    (fp_text value CONN_01X02 (at 7.3664 1.1848 270) (layer F.Fab) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_line (start -1.5 -1.75) (end -1.5 4.3) (layer F.CrtYd) (width 0.05))
@@ -1343,7 +1343,7 @@
     )
   )
 
-  (module Pin_Headers:Pin_Header_Straight_1x06 (layer F.Cu) (tedit 573B9543) (tstamp 573391B6)
+  (module Pin_Headers:Pin_Header_Straight_1x06 (layer F.Cu) (tedit 577CF872) (tstamp 573391B6)
     (at 153.2474 107.962 90)
     (descr "Through hole pin header")
     (tags "pin header")
@@ -1351,7 +1351,7 @@
     (fp_text reference P105 (at 0 -5.1 90) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value CONN_01X06 (at 0 -3.1 90) (layer F.Fab)
+    (fp_text value CONN_01X06 (at 0 -3.1 90) (layer F.Fab) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_line (start -1.75 -1.75) (end -1.75 14.45) (layer F.CrtYd) (width 0.05))
@@ -1453,7 +1453,7 @@
     )
   )
 
-  (module Pin_Headers:Pin_Header_Straight_1x05 (layer F.Cu) (tedit 573C7BEF) (tstamp 573C7B61)
+  (module Pin_Headers:Pin_Header_Straight_1x05 (layer F.Cu) (tedit 577CF853) (tstamp 573C7B61)
     (at 168.5 97.8)
     (descr "Through hole pin header")
     (tags "pin header")
@@ -1461,7 +1461,7 @@
     (fp_text reference P109 (at 0 -5.1) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value CONN_01X05 (at 0 -3.1) (layer F.Fab)
+    (fp_text value CONN_01X05 (at 0 -3.1) (layer F.Fab) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_line (start -1.55 0) (end -1.55 -1.55) (layer F.SilkS) (width 0.15))
