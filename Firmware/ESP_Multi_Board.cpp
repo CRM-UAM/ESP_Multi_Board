@@ -17,6 +17,33 @@
 #include "ESP_Multi_Board.h"
 
 
+//Encoder read idea: http://makeatronics.blogspot.com.es/2013/02/efficiently-reading-quadrature-with.html
+void ESP_Multi_Board::changeEnc1(){
+
+    static int8_t lookup_table[] = {0,0,0,-1,0,0,1,0,0,1,0,0,-1,0,0,0};
+    static uint8_t enc1_val = 0;
+
+    uint8_t v = (digitalRead(ENC_1_A)<<1) | digitalRead(ENC_1_B);
+
+    enc1_val = enc1_val << 2;
+    enc1_val = enc1_val | (v & 0b11)
+
+    count_enc_r = count_enc_r + lookup_table[enc1_val & 0b1111];
+}
+
+//Encoder read idea: http://makeatronics.blogspot.com.es/2013/02/efficiently-reading-quadrature-with.html
+void ESP_Multi_Board::changeEnc2(){
+
+    static int8_t lookup_table[] = {0,0,0,-1,0,0,1,0,0,1,0,0,-1,0,0,0};
+    static uint8_t enc2_val = 0;
+
+    uint8_t v = (digitalRead(ENC_2_A)<<1) | digitalRead(ENC_2_B);
+
+    enc2_val = enc2_val << 2;
+    enc2_val = enc2_val | (v & 0b11)
+
+    count_enc_l = count_enc_l + lookup_table[enc2_val & 0b1111];
+}
 
 void ESP_Multi_Board::begin(void) {
     mcp.begin(4);      // use addres 4, A2=1, A1=0, A0=0
@@ -31,7 +58,12 @@ void ESP_Multi_Board::begin(void) {
     Wire.begin(4,0); //communication with MAX1605
     count_enc_r=0;
     count_enc_l=0;
-
+    pinMode(ENC_1_B,INPUT);
+    pinMode(ENC_1_A,INPUT);
+    pinMode(ENC_2_B,INPUT);
+    pinMode(ENC_2_A,INPUT);
+    attachInterrupt(ENC_1_B, changEnc1, CHANGE);
+    attachInterrupt(ENC_2_B, changEnc2, CHANGE);
 }
 
 void ESP_Multi_Board::pinMode(uint8_t p, uint8_t d) {
@@ -109,10 +141,31 @@ void ESP_Multi_Board::setSpeed(int velR, int velL){
     setMotorRightSpeed(velR);
 }
 
-uint8_t getMotorLeftCurrent(){
+uint8_t ESP_Multi_Board::getMotorLeftCurrent(){
     return analogRead(11);
 }
 
-uint8_t getMotorRightCurrent(){
+uint8_t ESP_Multi_Board::getMotorRightCurrent(){
     return analogRead(10);
+}
+
+long ESP_Multi_Board::getEncRightCount(){
+    return count_enc_r;
+}
+
+long ESP_Multi_Board::getEncLeftCount(){
+    return count_enc_l;
+}
+
+void ESP_Multi_Board::resetEncRight(){
+    count_enc_r=0;
+}
+
+void ESP_Multi_Board::resetEncLeft(){
+    count_enc_l=0;
+}
+
+void resetEncoders(){
+    count_enc_r=0;
+    count_enc_l=0;
 }

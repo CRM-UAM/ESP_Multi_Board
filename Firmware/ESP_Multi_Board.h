@@ -28,8 +28,11 @@ public:
   void setSpeed(int velR, int velL);
   void setMotorLeftSpeed(int velL);
   void setMotorRightSpeed(int velR);
-  unsigned long getEncRightCount(); //TODO
-  unsigned long getEncLeftCount(); //TODO
+  long getEncRightCount();
+  void resetEncRight();
+  void resetEncLeft();
+  void resetEncoders();
+  long getEncLeftCount();
   uint8_t getMotorLeftCurrent();
   uint8_t getMotorRightCurrent();
 
@@ -37,12 +40,19 @@ public:
 
  private:
   Adafruit_MCP23008 mcp;
-  unsigned long count_enc_r;
-  unsigned long count_enc_l;
+  volatile long count_enc_r;
+  volatile long count_enc_l;
+  void changeEnc1();
+  void changeEnc2();
 
 };
 
 #define MCP23008_ADDRESS 4
 #define MAX1605_ADDRESS 0x65
+#define ENC_1_A 16
+#define ENC_2_A 14
+#define ENC_1_B 12
+#define ENC_2_B 13
+
 
 #endif
