@@ -142,11 +142,11 @@ void ESP_Multi_Board::setSpeed(int velR, int velL){
 }
 
 uint8_t ESP_Multi_Board::getMotorLeftCurrent(){
-    return analogRead(11);
+    return ESP_Multi_Board::analogRead(11);
 }
 
 uint8_t ESP_Multi_Board::getMotorRightCurrent(){
-    return analogRead(10);
+    return ESP_Multi_Board::analogRead(10);
 }
 
 long ESP_Multi_Board::getEncRightCount(){
