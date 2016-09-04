@@ -3,6 +3,8 @@
 //   Club de Robótica-Mecatrónica,
 //   Universidad Autónoma de Madrid
 //   http://crm-uam.github.io
+// License: CC-BY-SA 4.0 (Attribution-ShareAlike 4.0 International, http://creativecommons.org/licenses/by-sa/4.0/)
+// Designed with http://www.openscad.org/
 
 // Increase the resolution of default shapes
 $fa = 5; // Minimum angle for fragments [degrees]
@@ -71,8 +73,11 @@ module IR_emmiter_receiver(holes=false) {
 
 module IR_sensor() {
     rotate([90,0,0]) {
-        render() difference() {
-            translate([-9/2,0,-5.5]) cube([9,17,8]);
+        difference() {
+            translate([-9/2,0,-5.5]) hull() {
+                cube([9,0.1,8]);
+                translate([9/2,13,0]) cylinder(r=9/2,h=8);
+            }
             IR_emmiter_receiver(holes=true);
         }
         %IR_emmiter_receiver();
@@ -80,7 +85,7 @@ module IR_sensor() {
 }
 
 module sensor_holder() {
-    render() difference() {
+    difference() {
         translate([0,25,-3]) cylinder(r=83/2, h=3);
         translate([0,0,0.01]) ESP_multi_board(holes=true);
         translate([-50,6,-50]) cube([100,100,100]);
@@ -93,7 +98,7 @@ module sensor_holder() {
 
 
 %ESP_multi_board();
-render() difference() {
+difference() {
     sensor_holder();
     translate([0,-12,0]) cylinder(r=4/2, h=8, center=true);
 }
