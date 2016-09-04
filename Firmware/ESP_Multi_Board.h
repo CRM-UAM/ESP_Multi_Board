@@ -5,10 +5,11 @@
  ****************************************************/
 
 #ifndef _ESP_MULTI_BOARD_H
+
 #define _ESP_MULTI_BOARD_H
-// Don't forget the Wire library
-#include <Wire.h>
-#include "Adafruit_MCP23008.h"
+
+
+
 
 
 class ESP_Multi_Board {
@@ -25,6 +26,7 @@ public:
 
   uint8_t analogRead(uint8_t p);
 
+  void move(long rightEncTicks, long leftEncTicks);
   void setSpeed(int velR, int velL);
   void setMotorLeftSpeed(int velL);
   void setMotorRightSpeed(int velR);
@@ -35,15 +37,11 @@ public:
   long getEncLeftCount();
   uint8_t getMotorLeftCurrent();
   uint8_t getMotorRightCurrent();
-
   //IMU functions //TODO
 
+
  private:
-  Adafruit_MCP23008 mcp;
-  volatile long count_enc_r;
-  volatile long count_enc_l;
-  void changeEnc1();
-  void changeEnc2();
+
 
 };
 
@@ -53,6 +51,8 @@ public:
 #define ENC_2_A 14
 #define ENC_1_B 12
 #define ENC_2_B 13
+
+
 
 
 #endif

@@ -15,10 +15,19 @@
 
 #include "Adafruit_MCP23008.h"
 #include "ESP_Multi_Board.h"
+#include <PID_v1.h>
+
+extern "C" {
+    #include "user_interface.h"
+}
+
+Adafruit_MCP23008 mcp;
 
 
+volatile long count_enc_r;
+volatile long count_enc_l;
 //Encoder read idea: http://makeatronics.blogspot.com.es/2013/02/efficiently-reading-quadrature-with.html
-void ESP_Multi_Board::changeEnc1(){
+void changeEnc1(){
 
     static int8_t lookup_table[] = {0,0,0,-1,0,0,1,0,0,1,0,0,-1,0,0,0};
     static uint8_t enc1_val = 0;
@@ -26,13 +35,13 @@ void ESP_Multi_Board::changeEnc1(){
     uint8_t v = (digitalRead(ENC_1_A)<<1) | digitalRead(ENC_1_B);
 
     enc1_val = enc1_val << 2;
-    enc1_val = enc1_val | (v & 0b11)
+    enc1_val = enc1_val | (v & 0b11);
 
-    count_enc_r = count_enc_r + lookup_table[enc1_val & 0b1111];
+    count_enc_r = count_enc_r - lookup_table[enc1_val & 0b1111];
 }
 
 //Encoder read idea: http://makeatronics.blogspot.com.es/2013/02/efficiently-reading-quadrature-with.html
-void ESP_Multi_Board::changeEnc2(){
+void changeEnc2(){
 
     static int8_t lookup_table[] = {0,0,0,-1,0,0,1,0,0,1,0,0,-1,0,0,0};
     static uint8_t enc2_val = 0;
@@ -40,10 +49,15 @@ void ESP_Multi_Board::changeEnc2(){
     uint8_t v = (digitalRead(ENC_2_A)<<1) | digitalRead(ENC_2_B);
 
     enc2_val = enc2_val << 2;
-    enc2_val = enc2_val | (v & 0b11)
+    enc2_val = enc2_val | (v & 0b11);
 
     count_enc_l = count_enc_l + lookup_table[enc2_val & 0b1111];
 }
+
+
+
+
+
 
 void ESP_Multi_Board::begin(void) {
     mcp.begin(4);      // use addres 4, A2=1, A1=0, A0=0
@@ -62,8 +76,10 @@ void ESP_Multi_Board::begin(void) {
     pinMode(ENC_1_A,INPUT);
     pinMode(ENC_2_B,INPUT);
     pinMode(ENC_2_A,INPUT);
-    attachInterrupt(ENC_1_B, changEnc1, CHANGE);
-    attachInterrupt(ENC_2_B, changEnc2, CHANGE);
+    attachInterrupt(ENC_1_B, changeEnc1, CHANGE);
+    attachInterrupt(ENC_2_B, changeEnc2, CHANGE);
+
+
 }
 
 void ESP_Multi_Board::pinMode(uint8_t p, uint8_t d) {
@@ -87,7 +103,7 @@ void ESP_Multi_Board::digitalWrite(uint8_t p, uint8_t d) {
 
 void ESP_Multi_Board::pullUp(uint8_t p, uint8_t d) {
     if(p<4)
-        mpc.pullUp(p,d);
+        mcp.pullUp(p,d);
 }
 
 uint8_t ESP_Multi_Board::digitalRead(uint8_t p) {
@@ -112,12 +128,12 @@ uint8_t ESP_Multi_Board::analogRead(uint8_t p){
 
 void ESP_Multi_Board::setMotorLeftSpeed(int velL){
     if(velL < 0){
-        mcp.digitalWrite(4,HIGH);
-        mcp.digitalWrite(5,LOW);
+        mcp.digitalWrite(5,HIGH);
+        mcp.digitalWrite(4,LOW);
         velL=-velL;
     }else{
-        mcp.digitalWrite(4,LOW);
-        mcp.digitalWrite(5,HIGH);
+        mcp.digitalWrite(5,LOW);
+        mcp.digitalWrite(4,HIGH);
     }
     if(velL > 1024) velL=1024;
     analogWrite(5, velL); //set motor A high speed
@@ -125,18 +141,18 @@ void ESP_Multi_Board::setMotorLeftSpeed(int velL){
 
 void ESP_Multi_Board::setMotorRightSpeed(int velR){
     if(velR < 0){
-        mcp.digitalWrite(6,HIGH);
-        mcp.digitalWrite(7,LOW);
+        mcp.digitalWrite(7,HIGH);
+        mcp.digitalWrite(6,LOW);
         velR=-velR;
     }else{
-        mcp.digitalWrite(6,LOW);
-        mcp.digitalWrite(7,HIGH);
+        mcp.digitalWrite(7,LOW);
+        mcp.digitalWrite(6,HIGH);
     }
     if(velR > 1024) velR=1024;
     analogWrite(2, velR); //set motor A high speed
 }
 
-void ESP_Multi_Board::setSpeed(int velR, int velL){
+void ESP_Multi_Board::setSpeed(int velL, int velR){
     setMotorLeftSpeed(velL);
     setMotorRightSpeed(velR);
 }
