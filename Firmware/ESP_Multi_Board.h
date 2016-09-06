@@ -25,6 +25,7 @@ public:
   void writeGPIO(uint8_t);
 
   uint8_t analogRead(uint8_t p);
+  uint8_t analogScand(uint8_t size, uint8_t *table);
 
   void move(long rightEncTicks, long leftEncTicks);
   void setSpeed(int velR, int velL);

@@ -71,6 +71,7 @@ void ESP_Multi_Board::begin(void) {
     }
 
     Wire.begin(4,0); //communication with MAX1605
+    Wire.setClock(400000L);
     count_enc_r=0;
     count_enc_l=0;
     pinMode(ENC_1_B,INPUT);
@@ -118,7 +119,7 @@ uint8_t ESP_Multi_Board::analogRead(uint8_t p){
   Wire.beginTransmission(MAX1605_ADDRESS); //init with slave adress
   uint8_t conf = 0 ;
   conf ^= p<<1; //toggle pin number in bits 4º, 3º, 2º, 1º
-  conf |= 0x61; //set scan1=1, scan0=1. set bit single-ended to 1
+  conf |= 0x61; //set scan1=1, scan0=1 (simple read mode). set bit single-ended to 1
   //Serial.print("(");printBits(conf);Serial.print(")");
   Wire.write((byte)conf);
   Wire.endTransmission();
@@ -126,6 +127,25 @@ uint8_t ESP_Multi_Board::analogRead(uint8_t p){
   Wire.requestFrom(MAX1605_ADDRESS, 1);
   return Wire.read();
 }
+
+uint8_t ESP_Multi_Board::analogScand(uint8_t size, uint8_t *table){
+    if(size>11)return 0;
+
+  Wire.beginTransmission(MAX1605_ADDRESS); //init with slave adress
+  uint8_t conf = 0 ;
+  conf ^= size<<1; //toggle pin number in bits 4º, 3º, 2º, 1º
+  conf |= 0x01; //set scan1=0, scan0=0 (scand mode). set bit single-ended to 1
+  //Serial.print("(");printBits(conf);Serial.print(")");
+  Wire.write((byte)conf);
+  Wire.endTransmission();
+
+  Wire.requestFrom(MAX1605_ADDRESS, size);
+  for(uint8_t i=0;i<size;i++){
+    table[i]=Wire.read();
+  }
+  return size;
+}
+
 
 void ESP_Multi_Board::setMotorLeftSpeed(int velL){
     if(velL < 0){
