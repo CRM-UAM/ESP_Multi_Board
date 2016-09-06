@@ -11,18 +11,25 @@ void setup() {
   robot.begin();
 
 }
-int medida2=0;
+uint8_t medida2=0;
+uint8_t medida1=0;
+uint8_t IR_value1[3]={0};
+uint8_t IR_value2[3]={0};
 void loop() {
-  int medida1 = robot.analogRead(0);
   
+  medida1 = robot.analogRead(0); //robot.analogScand(3, IR_value1);
   robot.digitalWrite(0,HIGH);
-  //unsigned long t1 = micros();
   //delayMicroseconds(40);
-  medida2 =robot.analogRead(0);
+  medida2 =robot.analogRead(0); //robot.analogScand(3, IR_value2);
   robot.digitalWrite(0,LOW);
-  //unsigned long t2 = micros();
+  
   //Serial.print(t2-t1);Serial.print(" , ");Serial.print(medida1);Serial.print(" ");Serial.print(medida2);Serial.print(" ");
-  Serial.println(medida2-medida1);
+  Serial.println(medida2-medida1); 
+  /*for(int i=0;i<3;i++){
+    Serial.print(IR_value2[i] - IR_value1[i]);
+    Serial.print(" ");
+  }
+  Serial.println("");*/
 
   delay(100);
 
