@@ -61,9 +61,10 @@ void changeEnc2(){
 
 void ESP_Multi_Board::begin(void) {
     mcp.begin(4);      // use addres 4, A2=1, A1=0, A0=0
-    for(int i=0;i<4;i++){ //set Output Mode in the motors direccion pins
-        mcp.pinMode(i, INPUT);
-        mcp.pullUp(i, HIGH);  // turn on a 100K pullup internally
+    for(int i=0;i<4;i++){
+        mcp.pinMode(i, OUTPUT);
+        //mcp.pullUp(i, HIGH);  // turn on a 100K pullup internally
+        mcp.digitalWrite(i,LOW);
     }
     for(int i=4;i<8;i++){ //set Output Mode in the motors direccion pins
         mcp.pinMode(i, OUTPUT);
