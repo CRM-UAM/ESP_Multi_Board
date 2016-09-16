@@ -26,8 +26,8 @@ void loop() {
   robot.digitalWrite(0,LOW);
   long t2= micros();
   
-  Serial.print(t2-t1);Serial.print(" , ");Serial.print(medida1);Serial.print(" ");Serial.print(medida2);Serial.print(" ");
-  Serial.println(medida2-medida1); 
+  //Serial.print(t2-t1);Serial.print(" , ");Serial.print(medida1);Serial.print(" ");Serial.print(medida2);Serial.print(" ");
+  //Serial.println(medida2-medida1); 
   Serial.print("MEDIDAS: ");
   for(int i=0;i<3;i++){
     Serial.print(IR_value2[i] - IR_value1[i]);
