@@ -14,7 +14,7 @@ extern "C" {
 }
 
 const char* ssid = "ONOFBA9";
-const char* password = "4125905522uceda";
+const char* password = "******";
 
 
 
