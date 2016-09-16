@@ -32,10 +32,11 @@ public:
   void setMotorLeftSpeed(int velL);
   void setMotorRightSpeed(int velR);
   long getEncRightCount();
+  long getEncLeftCount();
   void resetEncRight();
   void resetEncLeft();
   void resetEncoders();
-  long getEncLeftCount();
+
   uint8_t getMotorLeftCurrent();
   uint8_t getMotorRightCurrent();
   //IMU functions //TODO

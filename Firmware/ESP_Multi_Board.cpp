@@ -24,6 +24,7 @@ extern "C" {
 Adafruit_MCP23008 mcp;
 
 
+
 volatile long count_enc_r;
 volatile long count_enc_l;
 //Encoder read idea: http://makeatronics.blogspot.com.es/2013/02/efficiently-reading-quadrature-with.html
@@ -157,6 +158,11 @@ void ESP_Multi_Board::setMotorLeftSpeed(int velL){
         mcp.digitalWrite(4,HIGH);
     }
     if(velL > 1024) velL=1024;
+    if(velL <= 10){
+        velL = map(velL,0,10, 0, 80);
+    }else{
+        velL = map(velL,11,1023, 80, 1023);
+    }
     analogWrite(5, velL); //set motor A high speed
 }
 
@@ -170,6 +176,12 @@ void ESP_Multi_Board::setMotorRightSpeed(int velR){
         mcp.digitalWrite(6,HIGH);
     }
     if(velR > 1024) velR=1024;
+
+    if(velR <= 10){
+        velR = map(velR,0,10, 0, 80);
+    }else{
+        velR = map(velR,11,1023, 80, 1023);
+    }
     analogWrite(2, velR); //set motor A high speed
 }
 
@@ -202,7 +214,7 @@ void ESP_Multi_Board::resetEncLeft(){
     count_enc_l=0;
 }
 
-void resetEncoders(){
+void ESP_Multi_Board::resetEncoders(){
     count_enc_r=0;
     count_enc_l=0;
 }
