@@ -16,6 +16,8 @@ extern "C" {
 const char* ssid = "ONOFBA9";
 const char* password = "4125905522uceda";
 
+
+
 WiFiServer server(23);
 WiFiClient serverClient;
 
@@ -24,7 +26,7 @@ os_timer_t timerSpeedController;
 
 
 #define SIZE_TELEMETRIA 180
-long telemetria[SIZE_TELEMETRIA+1][4]={0};
+long telemetria[SIZE_TELEMETRIA+1][5]={0};
 int p_telemetria=0;
 
 //call speedProfile(void) in systick handle to make it execute every one milli second
@@ -64,12 +66,18 @@ float pidInputX = 0;
 float pidInputW = 0;
 float posErrorX = 0;
 float posErrorW = 0;
+float posErrorWir = 0;
 float oldPosErrorX = 0;
 float oldPosErrorW = 0;
+float oldPosErrorWir = 0;
 int posPwmX = 0;
 int posPwmW = 0;
+int posPwmWir = 0;
+
+#define IR_WEIGHT 0.7
 float kpX = 0.4, kdX = 7;
 float kpW = 0.8, kdW = 12;//used in straight
+float kpWir = 0.4, kdWir = 3;//used in straight
 float kpW1 = 1;//used for T1 and T3 in curve turn
 float kdW1 = 26;
 float kpW2 = 1;//used for T2 in curve turn
@@ -95,18 +103,18 @@ int leftBaseSpeed = 0;
 int rightBaseSpeed = 0;
 
 #define R_WHEEL 15.65 //radius in mm
-#define ONE_CELL_DISTANCE (130*120)/(2*3.14*R_WHEEL)*5
+#define ONE_CELL_DISTANCE (130*120)/(2*3.14*R_WHEEL)*5/3
 #define speed_to_counts(a) (120*(a)/(2*3.14*R_WHEEL))
 #define counts_to_speed(a) ((a)*(2*3.14*R_WHEEL)/120)
 //#define abs(x)  (x<0)?(-x):(x)
 
 //speed to count or count to speed are the macro or function to make the unit conversion
 // between encoder_counts/ms and mm/ms or any practical units you use.
-int moveSpeed = speed_to_counts(0);
+int moveSpeed = speed_to_counts(5);
 int turnSpeed = speed_to_counts(50);
 int returnSpeed = speed_to_counts(500*2);
 int stopSpeed = speed_to_counts(100*2);
-int maxSpeed = speed_to_counts(18);
+int maxSpeed = speed_to_counts(15);
 
 
 int gyroFeedbackRatio = 5700;//5900;
@@ -162,13 +170,26 @@ void updateCurrentSpeed(void)
     }
 }
 
+void leerIRs(uint8_t *data){
+  uint8_t IR_value1[3]={0};
+  uint8_t IR_value2[3]={0};
+  robot.analogScand(3, IR_value1);  
+  robot.digitalWrite(0,HIGH);
+  robot.analogScand(3, IR_value2);
+  robot.digitalWrite(0,LOW);
+  for(int i=0;i<3;i++){
+    data[i] = (IR_value2[i] - IR_value1[i]);
+  }
+}
 
 void calculateMotorPwm(void) // encoder PD controller
 {
     int gyroFeedback;
     int rotationalFeedback;
     int sensorFeedback;
-
+    uint8_t IR_value[3]={0};
+    leerIRs(IR_value);
+    //Serial.println(IR_value[0]);
     /* simple PD loop to generate base speed for both motors */
     encoderFeedbackX = rightEncoderChange + leftEncoderChange;
     encoderFeedbackW = rightEncoderChange - leftEncoderChange;
@@ -187,15 +208,19 @@ void calculateMotorPwm(void) // encoder PD controller
   
     posErrorX += curSpeedX - encoderFeedbackX;
     posErrorW += curSpeedW - rotationalFeedback;
-
+    if (IR_value[0] > 10 && IR_value[0] < 230){
+      posErrorWir = (80 - IR_value[0]);
+    }
     posPwmX = kpX * posErrorX + kdX * (posErrorX - oldPosErrorX);
     posPwmW = kpW * posErrorW + kdW * (posErrorW - oldPosErrorW);
+    posPwmWir = kpWir * posErrorWir + kdWir * (posErrorWir - oldPosErrorWir); 
 
     oldPosErrorX = posErrorX;
     oldPosErrorW = posErrorW;
+    oldPosErrorWir = posErrorWir;
 
-    leftBaseSpeed = posPwmX - posPwmW;
-    rightBaseSpeed = posPwmX + posPwmW;
+    leftBaseSpeed = posPwmX - ( (1-IR_WEIGHT)*posPwmW + IR_WEIGHT*posPwmWir);
+    rightBaseSpeed = posPwmX + ( (1-IR_WEIGHT)*posPwmW + IR_WEIGHT*posPwmWir);
 
     robot.setMotorLeftSpeed(leftBaseSpeed);
     robot.setMotorRightSpeed(rightBaseSpeed);
@@ -205,6 +230,7 @@ void calculateMotorPwm(void) // encoder PD controller
       telemetria[p_telemetria][2]=encoderFeedbackX;
       //telemetria[p_telemetria][3]=curSpeedW;
       telemetria[p_telemetria][3]=rotationalFeedback;
+      telemetria[p_telemetria][4]=IR_value[0];
       //telemetria[p_telemetria][5]=rightEncoderChange;
       //telemetria[p_telemetria][6]=leftEncoderChange;
       p_telemetria++;
@@ -359,7 +385,7 @@ void check_send_telnet_telemetry(){
 //Send data
   if (serverClient && serverClient.connected()){
     for(int i=0;i<p_telemetria;i++){
-      for(int j=0;j<4;j++){
+      for(int j=0;j<5;j++){
         serverClient.print(telemetria[i][j]);
         serverClient.print(" ");
       }
@@ -377,7 +403,7 @@ void setup() {
   delay(500);
 
   Serial.begin(115200);
-  init_telnet();
+  //init_telnet();
   
   robot.begin();
 
@@ -386,16 +412,23 @@ void setup() {
    resetSpeedProfile();
 }
 
+int num_loop=1;
 void loop() {
   moveOneCell();
+  if((num_loop++)%3==0){
+    targetSpeedX=0;
+    delay(10000);
+  }
   delay(2000);
-  /*for(int i=0;i<p_telemetria;i++){
-    for(int j=0;j<4;j++){
+  
+  for(int i=0;i<p_telemetria;i++){
+    for(int j=0;j<5;j++){
       Serial.print(telemetria[i][j]);
       Serial.print(" ");
     }
     Serial.println("");
-  }*/
-  check_send_telnet_telemetry();
- // delay(5000);
+  }
+  p_telemetria=0;
+  //check_send_telnet_telemetry();
+  
 }
