@@ -39,8 +39,13 @@ public:
 
   uint8_t getMotorLeftCurrent();
   uint8_t getMotorRightCurrent();
-  //IMU functions //TODO
-
+  //IMU functions
+  //void getMotion6(int16_t *ax, int16_t *ay, int16_t *az, int16_t *gx, int16_t *gy, int16_t *gz);
+  //int16_t getRotationY();
+  void calibrate_IMU();
+  int16_t read_IMU_GyZ();
+  bool read_IMU(int16_t *AcXp, int16_t *AcYp, int16_t *GyZp);
+  void integrate_IMU();
 
  private:
 

@@ -13,10 +13,10 @@ extern "C" {
 #include "user_interface.h"
 }
 
-//const char* ssid = "ONOFBA9";
-//const char* password = "4125905522uceda";
-const char* ssid = "wifiVictor";
-const char* password = "wifivictor";
+const char* ssid = "ONOFBA9";
+const char* password = "4125905522uceda";
+//const char* ssid = "wifiVictor";
+//const char* password = "wifivictor";
 
 
 
@@ -27,8 +27,9 @@ ESP_Multi_Board robot;
 os_timer_t timerSpeedController;
 
 
-#define SIZE_TELEMETRIA 400
-long telemetria[SIZE_TELEMETRIA+1][5]={0};
+#define SIZE_TELEMETRIA 1200//40*30 30seg telemetry
+#define DIM_TELEMETRIA 6
+float telemetria[SIZE_TELEMETRIA+1][DIM_TELEMETRIA]={0};
 int p_telemetria=0;
 
 //call speedProfile(void) in systick handle to make it execute every one milli second
@@ -76,15 +77,18 @@ int posPwmX = 0;
 int posPwmW = 0;
 int posPwmWir = 0;
 
-#define IR_WEIGHT 0
-#define ENCODER_GYRO_WEIGHT 1
-float kpX = 0.4, kdX = 7;
-float kpW = 0.8, kdW = 12;//used in straight
-float kpWir = 0.4, kdWir = 3;//used in straight
-float kpW1 = 1;//used for T1 and T3 in curve turn
-float kdW1 = 26;
-float kpW2 = 1;//used for T2 in curve turn
-float kdW2 = 45;
+#define TARGET_WALL_DIST 70
+float IR_WEIGHT = 0.0;
+const float ir_weight_straight = 0.85;
+const float ENCODER_GYRO_WEIGHT = 1.0;
+
+float kpX = 0.95, kdX = 10;
+float kpW = 0.8, kdW = 17;//used in straight
+const float kpW0 = kpW, kdW0 = kdW;//used in straight
+float kpWir = 0.5, kdWir = 3;//used with IR errors
+const float kpW1 = 0.85, kdW1 = 16;//used for T1 and T3 in curve turn
+const float kpW2 = 0.8, kdW2 = 20;//used for T2 in curve turn
+
 float accX = 45;//6m/s/s
 float decX = 35;
 float accW = 1; //cm/s^2
@@ -106,7 +110,7 @@ int leftBaseSpeed = 0;
 int rightBaseSpeed = 0;
 
 #define R_WHEEL 15.65 //radius in mm
-#define ONE_CELL_DISTANCE (130*120)/(2*3.14*R_WHEEL)*5/3
+#define ONE_CELL_DISTANCE 28000/(2*3.14*R_WHEEL)
 #define speed_to_counts(a) (120*(a)/(2*3.14*R_WHEEL))
 #define counts_to_speed(a) ((a)*(2*3.14*R_WHEEL)/120)
 //#define abs(x)  (x<0)?(-x):(x)
@@ -114,13 +118,13 @@ int rightBaseSpeed = 0;
 //speed to count or count to speed are the macro or function to make the unit conversion
 // between encoder_counts/ms and mm/ms or any practical units you use.
 int moveSpeed = speed_to_counts(0);
-int turnSpeed = speed_to_counts(10);
+int turnSpeed = speed_to_counts(12);
 int returnSpeed = speed_to_counts(500*2);
 int stopSpeed = speed_to_counts(100*2);
 int maxSpeed = speed_to_counts(15);
 
 
-int gyroFeedbackRatio = -223;//5900;
+float gyroFeedbackRatio = -223.5;//5900;
 
 void getEncoderStatus()
 {
@@ -147,30 +151,42 @@ void getEncoderStatus()
 
 void updateCurrentSpeed(void)
 {
-    if(curSpeedX < targetSpeedX)
-    {
+    if(curSpeedX < targetSpeedX && curSpeedX >= 0){
         curSpeedX += (float)(speed_to_counts(accX*2)/100);
         if(curSpeedX > targetSpeedX)
             curSpeedX = targetSpeedX;
-    }
-    else if(curSpeedX > targetSpeedX)
-    {
+    }else if(curSpeedX > targetSpeedX && curSpeedX > 0){
         curSpeedX -= (float)speed_to_counts(decX*2)/100;
         if(curSpeedX < targetSpeedX)
             curSpeedX = targetSpeedX;
+    }else if(curSpeedX < targetSpeedX && curSpeedX < 0){
+        curSpeedX += (float)speed_to_counts(decX*2)/100;
+        if(curSpeedX > targetSpeedX)
+            curSpeedX = targetSpeedX;
+    }else if(curSpeedX > targetSpeedX && targetSpeedX <= 0){
+        curSpeedX -= (float)(speed_to_counts(accX*2)/100);
+        if(curSpeedX < targetSpeedX)
+            curSpeedX = targetSpeedX;
     }
-    if(curSpeedW < targetSpeedW)
-    {
+    
+    if(curSpeedW < targetSpeedW && curSpeedW >= 0){
         curSpeedW += accW;
         if(curSpeedW > targetSpeedW)
             curSpeedW = targetSpeedW;
-    }
-    else if(curSpeedW > targetSpeedW)
-    {
+    }else if(curSpeedW > targetSpeedW && curSpeedW > 0){
         curSpeedW -= decW;
         if(curSpeedW < targetSpeedW)
             curSpeedW = targetSpeedW;
+    }else if(curSpeedW < targetSpeedW && curSpeedW < 0){
+        curSpeedW += decW;
+        if(curSpeedW > targetSpeedW)
+            curSpeedW = targetSpeedW;
+    }else if(curSpeedW > targetSpeedW && curSpeedW <= 0){
+        curSpeedW -= accW;
+        if(curSpeedW < targetSpeedW)
+            curSpeedW = targetSpeedW;
     }
+    
 }
 
 void leerIRs(uint8_t *data){
@@ -187,8 +203,6 @@ void leerIRs(uint8_t *data){
 
 void calculateMotorPwm(void) // encoder PD controller
 {
-    int gyroFeedback;
-    int rotationalFeedback;
     int sensorFeedback;
     uint8_t IR_value[3]={0};
     leerIRs(IR_value);
@@ -196,14 +210,15 @@ void calculateMotorPwm(void) // encoder PD controller
     /* simple PD loop to generate base speed for both motors */
     encoderFeedbackX = rightEncoderChange + leftEncoderChange;
     encoderFeedbackW = rightEncoderChange - leftEncoderChange;
-
-    gyroFeedback = robot.read_IMU_GyZ()/gyroFeedbackRatio; //gyroFeedbackRatio mentioned in curve turn lecture
+    float gyro = robot.read_IMU_GyZ()*1.0;
+    float gyroFeedback = gyro / gyroFeedbackRatio; //gyroFeedbackRatio mentioned in curve turn lecture
+    //gyroIntegrate += gyroFeedback;
     //sensorFeedback = sensorError/a_scale;//have sensor error properly scale to fit the system
 
     //if(onlyUseGyroFeedback)
     //    rotationalFeedback = gyroFeedback;
     //else if(onlyUseEncoderFeedback)
-        rotationalFeedback = (ENCODER_GYRO_WEIGHT)*encoderFeedbackW + (1-ENCODER_GYRO_WEIGHT)*gyroFeedback;
+          float rotationalFeedback = /*((float)(ENCODER_GYRO_WEIGHT*1.0f)*(encoderFeedbackW*1.0f)) + ((float)(1.0f - ENCODER_GYRO_WEIGHT*1.0)*(*/gyroFeedback;//));
     //else
     //    rotationalFeedback = encoderFeedbackW + gyroFeedback;
         //if you use IR sensor as well, the line above will be rotationalFeedback = encoderFeedbackW + gyroFeedback + sensorFeedback;
@@ -211,8 +226,10 @@ void calculateMotorPwm(void) // encoder PD controller
   
     posErrorX += curSpeedX - encoderFeedbackX;
     posErrorW += curSpeedW - rotationalFeedback;
-    if (IR_value[0] > 10 && IR_value[0] < 230){
-      posErrorWir = (80 - IR_value[0]);
+    if (IR_value[0] > 45 && IR_value[0] < 200){
+      posErrorWir = (TARGET_WALL_DIST - IR_value[0]);
+    }else{
+      posErrorWir /=3;
     }
     posPwmX = kpX * posErrorX + kdX * (posErrorX - oldPosErrorX);
     posPwmW = kpW * posErrorW + kdW * (posErrorW - oldPosErrorW);
@@ -232,9 +249,9 @@ void calculateMotorPwm(void) // encoder PD controller
       telemetria[p_telemetria][1]=curSpeedX;
       telemetria[p_telemetria][2]=encoderFeedbackX;
       //telemetria[p_telemetria][3]=curSpeedW;
-      telemetria[p_telemetria][3]=gyroFeedback;
-      telemetria[p_telemetria][4]=encoderFeedbackW;
-      //telemetria[p_telemetria][5]=rightEncoderChange;
+      telemetria[p_telemetria][3]=curSpeedW;
+      telemetria[p_telemetria][4]=rotationalFeedback;
+      telemetria[p_telemetria][5]=IR_value[0];
       //telemetria[p_telemetria][6]=leftEncoderChange;
       p_telemetria++;
     }
@@ -242,7 +259,7 @@ void calculateMotorPwm(void) // encoder PD controller
 }
 
 
-int needToDecelerate(long dist, int curSpd, int endSpd)//speed are in encoder counts/ms, dist is in encoder counts
+float needToDecelerate(long dist, int curSpd, int endSpd)//speed are in encoder counts/ms, dist is in encoder counts
 {
     if (curSpd<0) curSpd = -curSpd;
     if (endSpd<0) endSpd = -endSpd;
@@ -290,6 +307,12 @@ void resetSpeedProfile(void)
     robot.resetEncoders();//TIM2->CNT = 0;//reset left encoder count //TIM5->CNT = 0;//reset right encoder count
 }
 
+void speedProfile(void *a){ 
+    getEncoderStatus(); 
+    updateCurrentSpeed(); 
+    calculateMotorPwm(); 
+}
+
 /*void getSensorEror(void)//the very basic case
 {
     if(DLSensor > DLMiddleValue && DRSensor < DRMiddleValue)
@@ -308,18 +331,29 @@ void moveOneCell()
 {
     targetSpeedW = 0;
     targetSpeedX = moveSpeed;
-
+    kpW = kpW0;
+    kdW = kdW0;
+    IR_WEIGHT = ir_weight_straight; // usar los IR para alinearte con la pared
     do
     {
         /*you can call int needToDecelerate(int32_t dist, int16_t curSpd, int16_t endSpd)
         here with current speed and distanceLeft to decide if you should start to decelerate or not.*/
         /*sample*/
-        if(needToDecelerate(ONE_CELL_DISTANCE-(encoderCount-oldEncoderCount), curSpeedX, moveSpeed) < decX)
+        float accMin = needToDecelerate(ONE_CELL_DISTANCE-(encoderCount-oldEncoderCount), curSpeedX, moveSpeed);
+        
+        if( accMin < decX)
             targetSpeedX = maxSpeed;
         else
             targetSpeedX = moveSpeed;
-      
-        delay(25);
+            
+        Serial.print(millis());Serial.print(" ");
+        Serial.print(ONE_CELL_DISTANCE-(encoderCount-oldEncoderCount));Serial.print(" ");
+        Serial.print(curSpeedX);Serial.print(" ");
+        Serial.print(moveSpeed);Serial.print(" ");
+        Serial.print(accMin);Serial.print(" ");
+        Serial.print(decX);Serial.print(" ");
+        Serial.print(targetSpeedX);Serial.println(" ");
+        delay(5);
         //there is something else you can add here. Such as detecting falling edge of post to correct longitudinal position of mouse when running in a straight path
         //Serial.print(targetSpeedX);Serial.print(" ");Serial.print((encoderCount-oldEncoderCount));Serial.print(" ");Serial.print(ONE_CELL_DISTANCE);Serial.println("");
      }
@@ -332,32 +366,64 @@ void moveOneCell()
     //and LF/RFvalues2 are usually the threshold to determine if there is a front wall or not. You should probably move this 10mm closer to front wall when collecting
     //these thresholds just in case the readings are too weak.
 
+    Serial.print("Final Encoder Count");Serial.println((encoderCount-oldEncoderCount));
     oldEncoderCount = encoderCount; //update here for next movement to minimized the counts loss between cells.
 }
 
-void turn90(){
-  long t1 = 200;
-  long t2 = 600;
-  long t3 = 200;
+void turn90(int dir){
+  float velW=7.4*dir;
+  long t1 = (speed_to_counts(abs(velW))/accW)*25;
+  long t2 = 510;
+  long t3 = (speed_to_counts(abs(velW))/decW)*25;
   long tini = millis();
+  IR_WEIGHT = 0; //no usar los IR para alinearte con la pared cuando estas girando
   targetSpeedX = turnSpeed;
-  targetSpeedW = speed_to_counts(2);
-  while(millis()-tini < (t1+t2)){delay(1);}
+  targetSpeedW = speed_to_counts(velW);
+  kpW = kpW1;
+  kdW = kdW1;
+  while(millis()-tini < t1){delay(1);}
   tini = millis();
+  kpW = kpW2;
+  kdW = kdW2;
+  while(millis()-tini < t2){delay(1);}
+  tini = millis();
+  kpW = kpW1;
+  kdW = kdW1;
   targetSpeedW = 0;
+  targetSpeedX = targetSpeedX/4;
   while(millis()-tini < t3){delay(1);}
   targetSpeedX = 0;
+  kpW = kpW0;
+  kdW = kdW0;
+  oldEncoderCount = encoderCount;
 }
 
-void speedProfile(void *a)
-{
-    //Serial.println(micros());
-    getEncoderStatus();
-    //Serial.print("VEL_ENC: ");Serial.println(encoderChange);
-    updateCurrentSpeed();
-    //Serial.print("VEL_DESEADA: ");Serial.print(curSpeedX);Serial.print(" ");Serial.println(targetSpeedX);
-    calculateMotorPwm();
-    //Serial.print("VEL_ENC_X: ");Serial.println(encoderFeedbackX);
+void turn180(int dir){
+  float velW=16*dir;
+  long t1 = (speed_to_counts(abs(velW))/accW)*25;
+  long t2 =310;
+  long t3 = (speed_to_counts(abs(velW))/decW)*25;
+  long tini = millis();
+  IR_WEIGHT = 0; //no usar los IR para alinearte con la pared cuando estas girando
+  targetSpeedX = 0;
+  targetSpeedW = speed_to_counts(velW);
+  kpW = kpW1;
+  kdW = kdW1;
+  while(millis()-tini < t1){delay(1);}
+  tini = millis();
+  kpW = kpW2;
+  kdW = kdW2;
+  while(millis()-tini < t2){delay(1);}
+  tini = millis();
+  kpW = kpW1;
+  kdW = kdW1;
+  targetSpeedW = 0;
+  targetSpeedX = 0;
+  while(millis()-tini < t3){delay(1);}
+  targetSpeedX = 0;
+  kpW = kpW0;
+  kdW = kdW0;
+  oldEncoderCount = encoderCount;
 }
 
 
@@ -397,7 +463,7 @@ void check_send_telnet_telemetry(){
 //Send data
   if (serverClient && serverClient.connected()){
     for(int i=0;i<p_telemetria;i++){
-      for(int j=0;j<5;j++){
+      for(int j=0;j<DIM_TELEMETRIA;j++){
         serverClient.print(telemetria[i][j]);
         serverClient.print(" ");
       }
@@ -423,16 +489,24 @@ void setup() {
    os_timer_arm(&timerSpeedController, 25, true);
    resetSpeedProfile();
 }
-
+#define TIME_BT_MOVE 220
 int num_loop=1;
+int dir=1;
 void loop() {
   moveOneCell();
-  delay(300);
-  turn90();
+  delay(TIME_BT_MOVE);
+  moveOneCell();
+  delay(TIME_BT_MOVE);
+  turn90(1);
+  delay(TIME_BT_MOVE);
+  turn90(1);
+  delay(TIME_BT_MOVE);
+ 
   /*if((num_loop++)%3==0){
     targetSpeedX=0;
     delay(10000);
   }*/
+  check_send_telnet_telemetry();
   delay(2000);
   
   /*for(int i=0;i<p_telemetria;i++){
@@ -443,6 +517,6 @@ void loop() {
     Serial.println("");
   }*/
   //p_telemetria=0;
-  check_send_telnet_telemetry();
+  
   
 }
