@@ -13,10 +13,10 @@ extern "C" {
 #include "user_interface.h"
 }
 
-const char* ssid = "ONOFBA9";
-const char* password = "4125905522uceda";
-//const char* ssid = "wifiVictor";
-//const char* password = "wifivictor";
+//const char* ssid = "ONOFBA9";
+//const char* password = "4125905522uceda";
+const char* ssid = "wifiVictor";
+const char* password = "wifivictor";
 
 
 
@@ -27,8 +27,8 @@ ESP_Multi_Board robot;
 os_timer_t timerSpeedController;
 
 
-#define SIZE_TELEMETRIA 1200//40*30 30seg telemetry
-#define DIM_TELEMETRIA 6
+#define SIZE_TELEMETRIA 120//40*30 30seg telemetry
+#define DIM_TELEMETRIA 8
 float telemetria[SIZE_TELEMETRIA+1][DIM_TELEMETRIA]={0};
 int p_telemetria=0;
 
@@ -79,13 +79,13 @@ int posPwmWir = 0;
 
 #define TARGET_WALL_DIST 70
 float IR_WEIGHT = 0.0;
-const float ir_weight_straight = 0.85;
+const float ir_weight_straight = 1.0;
 const float ENCODER_GYRO_WEIGHT = 1.0;
 
 float kpX = 0.95, kdX = 10;
 float kpW = 0.8, kdW = 17;//used in straight
 const float kpW0 = kpW, kdW0 = kdW;//used in straight
-float kpWir = 0.5, kdWir = 3;//used with IR errors
+float kpWir = 0.6, kdWir = 6.5;//used with IR errors
 const float kpW1 = 0.85, kdW1 = 16;//used for T1 and T3 in curve turn
 const float kpW2 = 0.8, kdW2 = 20;//used for T2 in curve turn
 
@@ -110,7 +110,7 @@ int leftBaseSpeed = 0;
 int rightBaseSpeed = 0;
 
 #define R_WHEEL 15.65 //radius in mm
-#define ONE_CELL_DISTANCE 28000/(2*3.14*R_WHEEL)
+#define ONE_CELL_DISTANCE 27500/(2*3.14*R_WHEEL)
 #define speed_to_counts(a) (120*(a)/(2*3.14*R_WHEEL))
 #define counts_to_speed(a) ((a)*(2*3.14*R_WHEEL)/120)
 //#define abs(x)  (x<0)?(-x):(x)
@@ -200,12 +200,96 @@ void leerIRs(uint8_t *data){
     data[i] = (IR_value2[i] - IR_value1[i]);
   }
 }
+inline void getErrIRNew(){
+  int DLMiddleValue=101;
+  int DRMiddleValue=170;
+    int DLMinValue=60;
+    int DRMinValue=76;
+    uint8_t IR_value[3]={0};
+    leerIRs(IR_value);
+    telemetria[p_telemetria][6]=IR_value[0];
+    telemetria[p_telemetria][7]=IR_value[2];
+
+    if( abs(DLMiddleValue - IR_value[0]) < abs(IR_value[2] - DRMiddleValue) ){ //pared izqueirda mas cercana que la derecha, la utilizo para ir por el centro
+      if(IR_value[0] > DLMinValue) //pared detectada por encima del umbral minimo 
+        posErrorWir = DLMiddleValue - IR_value[0];
+      else //pared no detectada
+        posErrorWir /= 3; 
+    }else{
+      if(IR_value[2] > DRMinValue )
+        posErrorWir = IR_value[2] - DRMiddleValue;
+      else
+        posErrorWir /= 3;
+    }
+}
+
+inline void getErrIRChino(){
+      int DLMiddleValue=101;
+    int DRMiddleValue=170;
+    int DLMinValue=60;
+    int DRMinValue=76;
+    
+    uint8_t IR_value[3]={0};
+    leerIRs(IR_value);
+    
+    telemetria[p_telemetria][6]=IR_value[0];
+    telemetria[p_telemetria][7]=IR_value[2];
+
+    if(IR_value[0] > DLMinValue || IR_value[2] > DRMinValue){
+      if(IR_value[0] > IR_value[2]){
+        posErrorWir = DLMiddleValue - IR_value[0];
+      }else{
+        posErrorWir = IR_value[2] - DRMiddleValue;
+      }
+      
+    }else{
+      posErrorWir=0;
+    }
+}
+
+inline void getErrIR(){
+    int DLMiddleValue=101;
+    int DRMiddleValue=170;
+    int DLMinValue=60;
+    int DRMinValue=76;
+    
+    uint8_t IR_value[3]={0};
+    leerIRs(IR_value);
+    
+    telemetria[p_telemetria][6]=IR_value[0];
+    telemetria[p_telemetria][7]=IR_value[2];
+    
+    if(IR_value[0] > DLMinValue && IR_value[2] < DRMinValue){
+      posErrorWir = DLMiddleValue - IR_value[0];
+      if(IR_value[0] < DLMiddleValue)
+        posErrorWir /=3;
+    }else if(IR_value[2] > DRMinValue && IR_value[0] < DLMinValue){
+      posErrorWir = IR_value[2] - DRMiddleValue;
+      if(IR_value[2] < DRMiddleValue)
+        posErrorWir /=3;
+    }else if(IR_value[0] > DLMinValue && IR_value[2] > DRMinValue){
+      posErrorWir = 0;
+      
+      if(IR_value[0] < DLMiddleValue)
+        posErrorWir += (DLMiddleValue - IR_value[0])/3;
+      else 
+        posErrorWir += (DLMiddleValue - IR_value[0]);
+      
+      if(IR_value[2] < DRMiddleValue)
+        posErrorWir += (IR_value[2] - DRMiddleValue)/3;
+      else
+        posErrorWir += (IR_value[2] - DRMiddleValue);
+        
+      posErrorWir /= 2;
+      
+    }else
+      posErrorWir /= 3;
+}
 
 void calculateMotorPwm(void) // encoder PD controller
 {
     int sensorFeedback;
-    uint8_t IR_value[3]={0};
-    leerIRs(IR_value);
+    
     //Serial.println(IR_value[0]);
     /* simple PD loop to generate base speed for both motors */
     encoderFeedbackX = rightEncoderChange + leftEncoderChange;
@@ -226,11 +310,18 @@ void calculateMotorPwm(void) // encoder PD controller
   
     posErrorX += curSpeedX - encoderFeedbackX;
     posErrorW += curSpeedW - rotationalFeedback;
-    if (IR_value[0] > 45 && IR_value[0] < 200){
-      posErrorWir = (TARGET_WALL_DIST - IR_value[0]);
-    }else{
-      posErrorWir /=3;
-    }
+   
+
+
+    getErrIRChino();
+    /*if(posErrorWir < 20){
+      posErrorW = 0;
+    }*/
+     
+
+
+
+    
     posPwmX = kpX * posErrorX + kdX * (posErrorX - oldPosErrorX);
     posPwmW = kpW * posErrorW + kdW * (posErrorW - oldPosErrorW);
     posPwmWir = kpWir * posErrorWir + kdWir * (posErrorWir - oldPosErrorWir); 
@@ -251,7 +342,7 @@ void calculateMotorPwm(void) // encoder PD controller
       //telemetria[p_telemetria][3]=curSpeedW;
       telemetria[p_telemetria][3]=curSpeedW;
       telemetria[p_telemetria][4]=rotationalFeedback;
-      telemetria[p_telemetria][5]=IR_value[0];
+      telemetria[p_telemetria][5]=posErrorWir;
       //telemetria[p_telemetria][6]=leftEncoderChange;
       p_telemetria++;
     }
@@ -441,6 +532,12 @@ void init_telnet(){
   Serial.println(" 23' to connect");
 }
 
+void print_tl(String str){
+  if (serverClient && serverClient.connected()){
+        serverClient.print(str);
+   }
+}
+
 void check_send_telnet_telemetry(){
   if (server.hasClient()){
     if (!serverClient || !serverClient.connected()){
@@ -476,6 +573,13 @@ void check_send_telnet_telemetry(){
   
 }
 
+void leerParedes(){
+    uint8_t IR_value[3]={0};
+    leerIRs(IR_value);
+    
+    
+}
+
 void setup() {
   // put your setup code here, to run once:
   delay(500);
@@ -489,7 +593,8 @@ void setup() {
    os_timer_arm(&timerSpeedController, 25, true);
    resetSpeedProfile();
 }
-#define TIME_BT_MOVE 220
+
+#define TIME_BT_MOVE 10
 int num_loop=1;
 int dir=1;
 void loop() {
@@ -497,17 +602,23 @@ void loop() {
   delay(TIME_BT_MOVE);
   moveOneCell();
   delay(TIME_BT_MOVE);
-  turn90(1);
+  moveOneCell();
+  delay(TIME_BT_MOVE);
+  moveOneCell();
+  delay(TIME_BT_MOVE);
+  /*turn90(1);
   delay(TIME_BT_MOVE);
   turn90(1);
-  delay(TIME_BT_MOVE);
+  delay(TIME_BT_MOVE);*/
  
   /*if((num_loop++)%3==0){
     targetSpeedX=0;
     delay(10000);
   }*/
   check_send_telnet_telemetry();
-  delay(2000);
+  //delay(2000);
+
+  
   
   /*for(int i=0;i<p_telemetria;i++){
     for(int j=0;j<5;j++){
